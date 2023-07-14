@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework import generics
 from .models import Atendimentos, Cliente, Profissional, Agenda
 from .serializers import *
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 # Create Acc Cliente
@@ -75,7 +76,8 @@ class AgendasAPIView(generics.ListCreateAPIView):
     queryset = Agenda.objects.all()
     serializer_class = AgendaSerializer
     http_method_names = ['get', 'post']
-
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['profissional']
 
 class AgendaAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Agenda.objects.all()
@@ -113,15 +115,15 @@ class AtendimentoAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AtendimentosTesteSerializer
     http_method_names = ['get', 'patch']
 
-    # def patch(self, request, pk):
-    #     atd = Atendimentos.objects.get(pk=pk)
+    def patch(self, request, pk):
+        atd = Atendimentos.objects.get(pk=pk)
 
-    #     livre = request.data.get('livre',None)
-    #     cocncluido = request.data.get('cocncluido',None)
+        livre = request.data.get('livre',None)
+        cocncluido = request.data.get('cocncluido',None)
 
-    #     if livre != None:
-    #         agd = Agenda.objects.filter(pk=atd.agenda_id).update(livre=livre)
+        if livre != None:
+            agd = Agenda.objects.filter(pk=atd.agenda_id).update(livre=livre)
 
-    #     Atendimentos.objects.update(cocncluido=cocncluido)
-    #     content = {f"Autorizado!"}
-    #     return Response(content,status=status.HTTP_200_OK)
+        Atendimentos.objects.update(cocncluido=cocncluido)
+        content = {f"Autorizado!"}
+        return Response(content,status=status.HTTP_200_OK)
