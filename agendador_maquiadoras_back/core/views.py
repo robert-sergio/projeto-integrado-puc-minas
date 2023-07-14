@@ -90,6 +90,8 @@ class AtendimentosAPIView(generics.ListAPIView):
     queryset = Atendimentos.objects.all()
     serializer_class = AtendimentosTesteSerializer
     http_method_names = ['get']
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['profissional', 'cliente']
 
 # Criar Agendamentos
 class CriarAtendimentoAPIView(generics.ListCreateAPIView):
@@ -119,11 +121,18 @@ class AtendimentoAPIView(generics.RetrieveUpdateDestroyAPIView):
         atd = Atendimentos.objects.get(pk=pk)
 
         livre = request.data.get('livre',None)
-        cocncluido = request.data.get('cocncluido',None)
+        
+        values = {}
+
+        if request.data.get('cocncluido',None) is not None:
+            values['cocncluido'] = request.data.get('cocncluido',None)
+
+        if request.data.get('msg',None) is not None:
+            values['msg'] = request.data.get('msg',None)
 
         if livre != None:
             agd = Agenda.objects.filter(pk=atd.agenda_id).update(livre=livre)
-
-        Atendimentos.objects.update(cocncluido=cocncluido)
+        
+        Atendimentos.objects.update(**values)
         content = {f"Autorizado!"}
         return Response(content,status=status.HTTP_200_OK)

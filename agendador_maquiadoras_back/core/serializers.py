@@ -48,5 +48,5 @@ class AtendimentosTesteSerializer(serializers.ModelSerializer):
     agenda = AgendaReduzidaSerializer()
     class Meta:
         model = Atendimentos
-        fields = ['pk', 'msg','valor','cocncluido','cidade_atendimento', 'cliente', 'profissional', 'agenda']
+        fields = ['pk', 'dt_atualizacao', 'msg','valor','cocncluido','cidade_atendimento', 'cliente', 'profissional', 'agenda']
 
