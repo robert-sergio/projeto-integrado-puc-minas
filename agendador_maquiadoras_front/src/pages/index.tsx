@@ -4,12 +4,10 @@
 // import styles from '@/styles/Home.module.css'
 // import styles from '@/styles/mine.css'
 
-import landing from '@/styles/landing.css'
-
 export default function Home() {
   return (
     <main>
-      
+
     </main>
   )
 }
