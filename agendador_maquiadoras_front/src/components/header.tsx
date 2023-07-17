@@ -2,7 +2,7 @@
 export default function Header(){
     return (
         <div>
-            Hello World
+            Header Component
         </div>
     )
 }
