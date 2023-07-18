@@ -3,7 +3,7 @@
 // import { Inter } from 'next/font/google'
 // import styles from '@/styles/Home.module.css'
 // import styles from '@/styles/mine.css'
-import Header from '@/components/header'
+import Header from '@/components/header-landing'
 import FotoRedonda from '@/components/foto-redonda'
 import BotaoVerde from '@/components/botao-verde'
 import { BrowserRouter } from 'react-router-dom'

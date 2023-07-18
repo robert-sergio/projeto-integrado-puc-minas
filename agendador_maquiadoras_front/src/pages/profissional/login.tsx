@@ -1,5 +1,5 @@
 import LoginCard from "@/components/logincard"
-import Header from "@/components/header"
+import Header from "@/components/header-landing"
 
 export default function LoginProfissional(){
     return (
