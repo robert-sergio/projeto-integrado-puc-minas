@@ -8,9 +8,9 @@ export default function SideBarLeft(){
             <div className="container vertically">
                 <Mapa></Mapa>
                 Filtrar Por
-                <div className="header-break-line mt-1"></div>
+                <div className="hl mt-1"></div>
                 <FiltroEstrelas></FiltroEstrelas>
-                <div className="header-break-line mt-1"></div>
+                <div className="hl mt-1"></div>
                 <FiltroCheckBox></FiltroCheckBox>
             </div>
         </div>

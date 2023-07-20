@@ -9,10 +9,10 @@ export default function Agendar(){
                 <div>Meus Agendamentos</div>
                 <div>Sair</div>
             </HeaderSiteNoFilter>
-            <div className="header-break-line mt-2"></div>
+            <div className="hl mt-2"></div>
 
             <div className="container pagecontent">
-                <div className="fill-page">
+                <div className="fill-page w-100">
                     <p>Confirme seu Atendimento</p>
                     <div className="container space-around">
                         <div className="card">

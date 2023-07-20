@@ -12,7 +12,7 @@ export default function PesquisaProfissional(){
                 <div>Fazer Login</div>
             </HeaderSite>
 
-            <div className="header-break-line mt-1"></div>
+            <div className="hl mt-1"></div>
 
             <section className="container pagecontent">
                 <aside className="sidebar">

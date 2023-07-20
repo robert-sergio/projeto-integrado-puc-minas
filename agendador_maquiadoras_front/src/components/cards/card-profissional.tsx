@@ -1,5 +1,6 @@
 import FotoRedonda from "../foto-redonda"
 import BotaoBege from "../botoes/botao-bege"
+import Estrelas from "../infos/estrelas"
 
 export default function CardProfissional(){
     return(
@@ -8,21 +9,21 @@ export default function CardProfissional(){
                 <div>
                     <FotoRedonda props={{'img':'/robo1.jpg'}}></FotoRedonda>
                     <div className="nome">MANICURE BOT</div>
-                    <div>Estrelas</div>
+                    <Estrelas></Estrelas>
                 </div>
 
                 <div>
                     <div className="profissao">Profissao</div>
 
                     <div className="mt-1">
-                        <div>Ico</div>
+                        <img src='/smile.png'></img>
                         <div>
                             70 atendimentos realizados
                         </div>
                     </div>
 
                     <div>
-                        <div>Ico</div>
+                        <img src='/schedule.png'></img>
                         <div>
                             12 meses na MakeUpMe
                         </div>
@@ -39,7 +40,7 @@ export default function CardProfissional(){
                         <div className="text-m mt-1">Especialidade</div>
                         <div>Apertar parafusos</div>
 
-                        <div className="mt-2 botao">
+                        <div className="mt-2">
                             <BotaoBege props={{'url':'/cliente/agendar', 'text':'Agendar'}}></BotaoBege>
                         </div>
 
