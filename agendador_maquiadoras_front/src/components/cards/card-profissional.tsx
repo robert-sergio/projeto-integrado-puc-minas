@@ -13,7 +13,7 @@ export default function CardProfissional(){
                 </div>
 
                 <div>
-                    <div className="profissao">Profissao</div>
+                    <div className="profissao">Manicure</div>
 
                     <div className="mt-1">
                         <img src='/smile.png'></img>

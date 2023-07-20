@@ -5,9 +5,9 @@ export default function Agendar(){
     return(
         <div>
             <HeaderSiteNoFilter>
-                <div>Olá, fulano de Tal</div>
-                <div>Meus Agendamentos</div>
-                <div>Sair</div>
+                <div className='textos-header l-marg-20 r-marg-20'>Olá, fulano de Tal</div>
+                <div className='textos-header l-marg-20 r-marg-20'>Meus Agendamentos</div>
+                <div className='textos-header l-marg-20 r-marg-20'>Sair</div>
             </HeaderSiteNoFilter>
             <div className="hl mt-2"></div>
 

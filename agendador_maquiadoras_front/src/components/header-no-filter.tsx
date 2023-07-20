@@ -9,7 +9,7 @@ export default function HeaderSiteNoFilter({children, props}){
                 </div>
 
                 <div className="container end">
-                    <div className='textos-header l-marg-20 r-marg-20'>Fazer Login</div>
+                    {children}
                 </div>
             </div>
 

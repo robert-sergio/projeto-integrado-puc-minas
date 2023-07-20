@@ -21,17 +21,24 @@ export default function CardAgendarEsquerdo(){
             <div className="vl ml-1"></div>
 
             <div className="ml-1">
-                <div className="container space-between">
+                <div className="container space-between textos-header">
                     <div>MAQUIA BOT</div>
                     <div>Maquiadora</div>
                 </div>
-                <div>
-                    Social
+                <div className="container center">
+                    <img src="/facebook.png" className="ico"></img>
+                    <img src="/instagram.png" className="ico"></img>
+                    <img src="/whatsapp.png" className="ico"></img>
+                    <img src="/telefone.png" className="ico"></img>
                 </div>
-                <div>Atende em</div>
-                <div>Especialidades</div>
+                <div className="textos-destaque">Atende em</div>
+                <div className="textos-descricao">Cidade do Eixo</div>
+
+                <div className="textos-destaque mt-1">Especialidades</div>
+                <div className="textos-descricao">Apertar Parafusos</div>
+
                 <div className="hl mt-1"></div>
-                <div>Agenda de MAQUIA BOT</div>
+                <div className="textos-header mt-1">Agenda de MAQUIA BOT</div>
                 <div className="">
                     <CardCalendario></CardCalendario>
                 </div>
