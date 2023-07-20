@@ -1,4 +1,4 @@
-import BotaoVerde from "./botao-verde"
+import BotaoVerde from "../botoes/botao-verde"
 
 export default function LoginCard({props}){
     return(

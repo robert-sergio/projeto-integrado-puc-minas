@@ -1,26 +1,30 @@
-import Header from "@/components/header-landing"
-import Filtros from "@/components/filtros"
+import HeaderSite from "@/components/header-site"
 import SideBarLeft from "@/components/sidebar-left"
-import CardRealizarLogin from "@/components/card-realizar-login"
-import CardProfissional from "@/components/card-pesquisa"
+import CardRealizarLogin from "@/components/cards/card-realizar-login"
+import CardProfissional from "@/components/cards/card-profissional"
+import Ordernar from "@/components/ordenar"
+import CountLocalizados from "@/components/infos/count-localizados"
 
 export default function PesquisaProfissional(){
     return (
         <div>
-            <Header>
+            <HeaderSite>
                 <div>Fazer Login</div>
-            </Header>
+            </HeaderSite>
 
-            <div>
-                Este cara vai ser uma linha
-            </div>
+            <div className="header-break-line mt-1"></div>
 
-            <div>
-                Este Background tem que ser branco
-                <SideBarLeft></SideBarLeft>
-                <CardRealizarLogin></CardRealizarLogin>
-                <CardProfissional></CardProfissional>
-            </div>
+            <section className="container pagecontent">
+                <aside className="sidebar">
+                    <SideBarLeft></SideBarLeft>
+                </aside>
+                <section className="pagebody">
+                    <Ordernar></Ordernar>
+                    <CountLocalizados></CountLocalizados>
+                    <CardRealizarLogin></CardRealizarLogin>
+                    <CardProfissional></CardProfissional>
+                </section>
+            </section>
         </div>
     )
 }

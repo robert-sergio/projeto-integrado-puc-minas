@@ -5,7 +5,7 @@
 // import styles from '@/styles/mine.css'
 import Header from '@/components/header-landing'
 import FotoRedonda from '@/components/foto-redonda'
-import BotaoVerde from '@/components/botao-verde'
+import BotaoVerde from '@/components/botoes/botao-verde'
 import { BrowserRouter } from 'react-router-dom'
 
 export default function Home() {
@@ -16,7 +16,7 @@ export default function Home() {
 
       <div className='texto-landing align-center mt-5'>Encontre <br></br> Profissionais de Beleza <br></br> Próximos à voce</div>
 
-      <div className='container center mt-2'>
+      <div className='container space-evenly mt-2'>
         <FotoRedonda props={{'img':'img1.jpeg', 'text':'Cabeleireiras'}}></FotoRedonda>
         <FotoRedonda props={{'img':'img2.jpeg', 'text':'Maquiadoras'}}></FotoRedonda>
         <FotoRedonda props={{'img':'img3.jpeg', 'text':'Manicures'}}></FotoRedonda>
@@ -24,7 +24,7 @@ export default function Home() {
       </div>
 
       <div className='container center mt-2'>
-        <BotaoVerde props={{'text':'Agende Agora!', 'url':'/pesquisa'}}></BotaoVerde>
+        <BotaoVerde props={{'text':'Agende Agora!', 'url':'/cliente/pesquisa'}}></BotaoVerde>
         <BotaoVerde props={{'text':'Sou profissional', 'url':'/profissional/login'}}></BotaoVerde>
       </div>
     </main>
