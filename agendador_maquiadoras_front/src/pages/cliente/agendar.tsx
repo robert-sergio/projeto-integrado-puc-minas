@@ -1,5 +1,6 @@
 import HeaderSiteNoFilter from "@/components/header-no-filter"
 import CardAgendarEsquerdo from "@/components/cards/card-agendar-esquerdo"
+import CardAgendarDireito from "@/components/cards/card-agendar-direito"
 
 export default function Agendar(){
     return(
@@ -9,17 +10,16 @@ export default function Agendar(){
                 <div className='textos-header l-marg-20 r-marg-20'>Meus Agendamentos</div>
                 <div className='textos-header l-marg-20 r-marg-20'>Sair</div>
             </HeaderSiteNoFilter>
-            <div className="hl mt-2"></div>
 
             <div className="container pagecontent">
-                <div className="fill-page w-100">
-                    <p>Confirme seu Atendimento</p>
-                    <div className="container space-around">
+                <div className="w-100">
+                    <div className="textos-header pl-1">Confirme seu Atendimento</div>
+                    <div className="container space-around mt-1">
                         <div className="card">
                             <CardAgendarEsquerdo></CardAgendarEsquerdo>
                         </div>
                         <div className="card">
-                            Card Direito
+                            <CardAgendarDireito></CardAgendarDireito>
                         </div>
                     </div>
                 </div>

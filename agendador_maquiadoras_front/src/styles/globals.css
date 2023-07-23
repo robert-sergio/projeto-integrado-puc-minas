@@ -10,8 +10,6 @@ body {
   border: 1px solid #627259;
   border-radius: .5rem;
   padding: .5rem;
-  /* width: 100%; */
-  /* height: 1.5rem; */
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
@@ -55,6 +53,13 @@ body {
   height: 80px;
 }
 
+.foto-redonda-p {
+  border: 1px solid #627259;
+  border-radius: 100px;
+  width: 80px;
+  height: 80px;
+}
+
 .textos-header {
   color: #627259;
   font-weight: bold;
@@ -75,6 +80,10 @@ body {
 
 .no-decor {
   text-decoration: none;
+}
+
+.pl-1 {
+  padding-left: 1rem;
 }
 
 .pd-1 {
@@ -98,11 +107,11 @@ body {
 }
 
 .l-marg-20 {
-  margin-left: 20px;
+  margin-left: 1rem;
 }
 
 .l-marg-50 {
-  margin-left: 50px;
+  margin-left: 3rem;
 }
 
 .r-marg-50 {
@@ -282,10 +291,10 @@ body {
   width: 100%;
 }
 
-.pagecontent .card {
+.card {
   width: 45%;
-  min-width: 30rem;
-  min-height: 25rem;
+  min-width: 35rem;
+  min-height: 29rem;
   border-radius: 10px;
   background-color: #F4ECE2;
   padding: 1rem;
@@ -393,8 +402,11 @@ body {
 
 
 .agenda {
+  overflow: auto;
   background-color: #FFFF;
   border: 2px solid #627259;
+  min-height: 13rem;
+  min-width: 20rem;
   border-radius: 5px;
   padding: .5rem;
   flex-flow: column;
@@ -412,7 +424,6 @@ body {
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
-  /* padding-bottom: .3rem; */
   border-bottom: 2px solid #68A797;
   margin-bottom: .3rem;
 }
@@ -420,6 +431,9 @@ body {
 .agenda .data {
   border: 1px solid #627259;
   border-radius: 1px;
+  font-size: .9rem;
+  min-height: 1rem;
+  min-width: 1rem;
   padding: .1rem;
   margin-bottom: .1rem;
   text-align: center;
@@ -439,6 +453,33 @@ body {
 .agenda .selecionado {
   background-color: #76BFAC;
   color: #FFFF;
+}
+
+.procedimentos {
+  overflow: auto;
+  background-color: #FFFF;
+  border: 2px solid #627259;
+  min-width: 95%;
+  min-height: 5rem;
+  border-radius: 5px;
+  padding: .5rem;
+  padding-left: 1rem;
+  align-items: start;
+  max-width: 20rem;
+}
+
+.card-atendimentos {
+  border: 1px solid #627259;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #F4ECE2;
+  margin: 1rem;
+  min-height: 100%;
+  color: #627259;
+}
+
+.col {
+  padding: 1rem;
 }
 
 /* Teste */

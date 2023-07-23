@@ -1,5 +1,5 @@
 
-export default function HeaderSiteNoFilter({children, props}){
+export default function HeaderSiteNoFilter({children}){
     return (
         <div>
             <div className='container space-between mt-2'>
@@ -12,7 +12,7 @@ export default function HeaderSiteNoFilter({children, props}){
                     {children}
                 </div>
             </div>
-
+            <div className="hl mt-1"></div>
         </div>
     )
 }

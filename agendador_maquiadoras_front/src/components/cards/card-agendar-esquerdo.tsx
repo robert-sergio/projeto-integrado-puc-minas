@@ -34,11 +34,11 @@ export default function CardAgendarEsquerdo(){
                 <div className="textos-destaque">Atende em</div>
                 <div className="textos-descricao">Cidade do Eixo</div>
 
-                <div className="textos-destaque mt-1">Especialidades</div>
+                <div className="textos-destaque">Especialidades</div>
                 <div className="textos-descricao">Apertar Parafusos</div>
 
-                <div className="hl mt-1"></div>
-                <div className="textos-header mt-1">Agenda de MAQUIA BOT</div>
+                <div className="hl"></div>
+                <div className="textos-header">Agenda de MAQUIA BOT</div>
                 <div className="">
                     <CardCalendario></CardCalendario>
                 </div>
