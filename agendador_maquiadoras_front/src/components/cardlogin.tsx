@@ -1,3 +1,4 @@
+import Link from "next/link";
 
 export default function CardLogin(){
     return(
@@ -5,7 +6,9 @@ export default function CardLogin(){
             <span className="text-orange-100 font-black">
                 Faça Login para ter acesso aos profissionais
             </span>
-            <button className="w-48 bg-orange-100 text-green-900 p-1 rounded-md">Fazer Login</button>
+            <Link href='/login'>
+                <button  className="font-bold w-48 bg-orange-100 text-green-900 p-1 rounded-md">Fazer Login</button>
+            </Link>
         </div>
     )
 }

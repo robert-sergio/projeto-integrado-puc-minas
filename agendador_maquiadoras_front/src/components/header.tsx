@@ -1,4 +1,5 @@
 import { IconPerfume } from "@tabler/icons-react"
+import Link from "next/link"
 
 export default function SiteHeader(props:any) {
 
@@ -9,7 +10,7 @@ export default function SiteHeader(props:any) {
         `}>
             <div className='flex gap-4'>
             <IconPerfume></IconPerfume>
-            <span>MakeUpMe</span>
+            <Link href='/'>MakeUpMe</Link>
             </div>
 
             <div  className='flex gap-4'>

@@ -22,37 +22,37 @@ export default function Home() {
       <div className='flex gap-24 justify-center p-4'>
 
         <div className='flex flex-col items-center'>
-          <div className='border border-green-900 rounded-full overflow-hidden h-40 w-40 flex'>
-            <Image src='/cabeleireiras.jpg' width={200} height={200} alt='...'></Image>
+          <div className='border border-green-900 rounded-full overflow-hidden'>
+            <Image src='/cabeleireiras.jpg' width={200} height={200} alt='...' className='w-40 hover:w-44 h-40 hover:h-44'></Image>
           </div>
           <strong>Cabeleireiras</strong>
         </div>
 
         <div className='flex flex-col items-center'>
-          <div className='border border-green-900 rounded-full overflow-hidden h-40 w-40 flex'>
-            <Image src='/cabeleireiras.jpg' width={200} height={200} alt='...'></Image>
+          <div className='border border-green-900 rounded-full overflow-hidden'>
+            <Image src='/estetica.jpg' width={200} height={200} alt='...' className='w-40 hover:w-44 h-40 hover:h-44'></Image>
           </div>
-          <strong>Cabeleireiras</strong>
+          <strong>Estética</strong>
         </div>
 
         <div className='flex flex-col items-center'>
-          <div className='border border-green-900 rounded-full overflow-hidden h-40 w-40 flex'>
-            <Image src='/cabeleireiras.jpg' width={200} height={200} alt='...'></Image>
+          <div className='border border-green-900 rounded-full overflow-hidden'>
+            <Image src='/maquiagens.jpg' width={200} height={200} alt='...'  className='w-40 hover:w-44 h-40 hover:h-44'></Image>
           </div>
-          <strong>Cabeleireiras</strong>
+          <strong>Maquiadoras</strong>
         </div>
 
         <div className='flex flex-col items-center'>
-          <div className='border border-green-900 rounded-full overflow-hidden h-40 w-40 flex'>
-            <Image src='/cabeleireiras.jpg' width={200} height={200} alt='...'></Image>
+          <div className='border border-green-900 rounded-full overflow-hidden'>
+            <Image src='/manicures.jpg' width={200} height={200} alt='...'  className='w-40 hover:w-44 h-40 hover:h-44'></Image>
           </div>
-          <strong>Cabeleireiras</strong>
+          <strong>Manicures</strong>
         </div>
 
       </div>
 
       <div className='flex items-center justify-center'>
-        <Link className='border rounded-md bg-green-800 text-green-50 p-2' href='/pesquisa'>Agende Agora!</Link>
+        <Link className='animate-bounce border rounded-md bg-green-800 text-green-50 px-4 py-2' href='/pesquisa'>Agende Agora!</Link>
       </div>
 
     </main>
