@@ -1,12 +1,19 @@
+'use client'
 import { IconCalendar, IconMoodSmileFilled, IconStar } from "@tabler/icons-react";
 import Image from "next/image";
 
+import { useContext } from "react";
+import { LoginContext } from "@/data/contexts/LoginContext";
+import Link from "next/link";
+
 export default function CardProfissional(){
+    const logado = useContext(LoginContext)
+
     return(
         <div className="flex border-2 border-green-900 rounded-md bg-orange-100 p-4">
             <div className="flex flex-col justify-center items-center">
                 <Image src='/robo1.jpg' width={300} height={300} alt=''
-                className="rounded-full w-48 h-48 border-2 border-green-900"></Image>
+                className="rounded-full w-32 h-32 border-2 border-green-900"></Image>
                 <div className="flex flex-col items-center gap-1">
                     <strong className="text-xl font-black text-green-900">Manicure BOT</strong>
                     <strong className="text-green-800">Manicure</strong>
@@ -41,9 +48,11 @@ export default function CardProfissional(){
                     <span>Apertar Parafusos</span>
                 </div>
 
-                <button className="w-48 bg-green-900 border-2 rounded-md p-1 text-orange-50">
-                    Agendar
-                </button>
+                <Link href={logado? '/agendamento':'/login'}>
+                    <button className="w-48 bg-green-900 border-2 rounded-md p-1 text-orange-50">
+                        Agendar
+                    </button>
+                </Link>
 
             </div>
         </div>

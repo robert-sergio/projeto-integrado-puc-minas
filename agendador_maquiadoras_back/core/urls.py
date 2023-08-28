@@ -6,7 +6,7 @@ from .views import ( AtendimentosAPIView, AtendimentoAPIView,  ClientesAPIView, 
 urlpatterns = [
     path('clientes/', ClientesAPIView.as_view(), name='clientes'),
     path(r'cliente/<pk>', ClienteAPIView.as_view(), name='cliente'),
-    path('logincliente/', LoginClienteAPIVIew.as_view(), name='login_cliente'),    
+    path('logincliente', LoginClienteAPIVIew.as_view(), name='login_cliente'),    
 
     path('profissionais/', ProfissionaisAPIView.as_view(), name='profissionais'),
     path(r'profissional/<pk>', ProfissionalAPIView.as_view(), name='profissional'),

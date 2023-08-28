@@ -24,17 +24,22 @@ class ClienteAPIView(generics.RetrieveUpdateAPIView):
 class LoginClienteAPIVIew(generics.RetrieveAPIView):
     queryset = Cliente.objects.all()
     serializer_class = ClienteSerializer
-    http_method_names = ['get']
+    http_method_names = ['post','options']
 
-    def get(self, request):
+    def post(self, request):
         email = request.headers.get('Email')
         senha = request.headers.get('Senha')
+        print(email, senha)
         result = self.queryset.filter(email= email, senha=senha)
         if len(result) == 0:
-            content = {f"Dados não conferem!"}
+            content = {
+                'message':f"Dados não conferem!",
+                'authorized':False
+                }
             return Response(content,status=status.HTTP_403_FORBIDDEN)
 
-        content = {f"Autorizado!"}
+        content = {'message':f"Autorizado!",
+                   'authorized':True}
         return Response(content,status=status.HTTP_200_OK)
 
 
