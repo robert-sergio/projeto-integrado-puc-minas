@@ -16,7 +16,7 @@ class Profissional(models.Model):
     cpf = models.CharField(max_length=15, null=False, unique=True)
     senha = models.CharField(max_length=24, null=False)
     email = models.CharField(max_length=100, null=False)
-
+    foto = models.CharField(max_length=250, null=False)
     endereco = models.CharField(max_length=500, null=False)
     profissao = models.CharField(max_length=250, choices=(('MANICURE','MANICURE'),('MAQUIADORA','MAQUIADORA')))
     especialidades = models.CharField(max_length=250, choices=(('Unha Acrigel','Unha Acrigel'),('Maquiagem Casamento', 'Maquiagem Casamento')))
