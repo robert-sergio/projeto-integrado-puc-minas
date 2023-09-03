@@ -6,6 +6,8 @@ import { useContext } from "react";
 import { LoginContext } from "@/data/contexts/LoginContext";
 import Link from "next/link";
 
+
+
 export default function CardProfissional(){
     const logado = useContext(LoginContext)
 

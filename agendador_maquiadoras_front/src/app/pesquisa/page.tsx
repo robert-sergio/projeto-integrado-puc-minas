@@ -5,9 +5,12 @@ import FiltroPesquisa from "@/components/filtropesquisa";
 import SiteHeader from "@/components/header";
 import { useContext } from "react";
 import { LoginContext } from "@/data/contexts/LoginContext";
+import Link from "next/link";
 
 export default function Pesquisa(){
     const { logado } = useContext(LoginContext)
+
+
 
     return(
         <div>
@@ -21,7 +24,9 @@ export default function Pesquisa(){
                         :
                         <CardLogin></CardLogin>
                     }
+
                     <CardProfissional></CardProfissional>
+
                 </div>
             </div>
         </div>

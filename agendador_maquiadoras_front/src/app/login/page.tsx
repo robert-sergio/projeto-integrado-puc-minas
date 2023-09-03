@@ -2,7 +2,7 @@
 import SiteHeader from "@/components/header";
 import { LoginContext } from "@/data/contexts/LoginContext";
 import axios from "axios"
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 // import { useRouter } from "next/router";
 import { useRouter } from 'next/navigation'
 
@@ -10,6 +10,8 @@ export default function LoginPage(){
     const router = useRouter()
 
     const { logado, setLogado } = useContext(LoginContext)
+    const { nome, setNome } = useContext(LoginContext)
+
     const [ loginError, setLoginError ] = useState<boolean>(false)
 
     const [senha, setSenha] = useState('');
@@ -36,7 +38,9 @@ export default function LoginPage(){
         const response = await axios.post(
             'http://localhost:8000/core/logincliente',data, config
         ).then((res)=> {
+            console.log(res.data['nome'])
             setLogado(res.data['authorized'])
+            setNome(res.data['nome'])
             setLoginError(false)
             router.push('/pesquisa')
         }).catch((err)=>{
@@ -45,6 +49,12 @@ export default function LoginPage(){
         })     
 
     }
+
+    useEffect(()=>{
+        logado?
+        router.push('/pesquisa'):
+        ''
+    },[logado])
 
    
     return(

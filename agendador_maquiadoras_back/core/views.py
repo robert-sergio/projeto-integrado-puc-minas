@@ -29,7 +29,6 @@ class LoginClienteAPIVIew(generics.RetrieveAPIView):
     def post(self, request):
         email = request.headers.get('Email')
         senha = request.headers.get('Senha')
-        print(email, senha)
         result = self.queryset.filter(email= email, senha=senha)
         if len(result) == 0:
             content = {
@@ -39,7 +38,7 @@ class LoginClienteAPIVIew(generics.RetrieveAPIView):
             return Response(content,status=status.HTTP_403_FORBIDDEN)
 
         content = {'message':f"Autorizado!",
-                   'authorized':True}
+                   'authorized':True, 'nome':result.values()[0].get('nome')}
         return Response(content,status=status.HTTP_200_OK)
 
 
