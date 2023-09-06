@@ -30,13 +30,11 @@ export default function LoginPage(){
         }
         const config = {
             headers: {
-                'Content-Type': 'application/json',
-                'email': email, // 'oi@oi.com.br',
-                'senha': senha, // 'abc123'
+                'Content-Type': 'application/json'
             }
         }
         const response = await axios.post(
-            'http://localhost:8000/core/logincliente',data, config
+            'http://localhost:8000/core/logincliente/?email='+email+'&senha='+senha,data, config
         ).then((res)=> {
             console.log(res.data['nome'])
             setLogado(res.data['authorized'])

@@ -20,7 +20,8 @@
             "request": "launch",
             "program": "${workspaceFolder}\\agendador_maquiadoras_back\\manage.py",
             "args": [
-                "runserver"
+                "runserver",
+                "8000"
             ],
             "django": true,
             "justMyCode": true

@@ -23,10 +23,24 @@ class ClienteAPIView(generics.RetrieveUpdateAPIView):
 # Login Cliente
 class LoginClienteAPIVIew(generics.RetrieveAPIView):
     queryset = Cliente.objects.all()
-    serializer_class = LoginClienteSerializer
+    serializer_class = ClienteSerializer
     http_method_names = ['post','options']
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['email','senha']
+
+    def post(self, request):
+        email = request.data.get("email")
+        senha = request.data.get("senha")
+        result = self.queryset.filter(email= email, senha=senha)
+        if len(result) == 0:
+            content = {
+                'message':f"Dados não conferem!",
+                'authorized':False
+                }
+            return Response(content,status=status.HTTP_403_FORBIDDEN)
+
+        content = {'message':f"Autorizado!",
+                   'authorized':True, 'nome':result.values()[0].get('nome')}
+        return Response(content,status=status.HTTP_200_OK)
+
 
 # Create Acc Profissional
 class CreateProfissionalAPIView(generics.ListCreateAPIView):
