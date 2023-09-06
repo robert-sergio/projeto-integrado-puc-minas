@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.hashers import make_password
 from django.utils import timezone as tz
+from datetime import datetime
 
 class Cliente(models.Model):
     nome = models.CharField(max_length=250, null=False)
@@ -25,6 +26,11 @@ class Profissional(models.Model):
     whatsapp = models.CharField(max_length=25)
     instagram = models.CharField(max_length=500, null=True)
     facebook = models.CharField(max_length=500, null=True)
+
+    estrelas = models.IntegerField()
+    qtd_atds = models.IntegerField()
+
+    dt_cadastro = models.DateTimeField(default=tz.now, editable=True)
 
 
 class Agenda(models.Model):

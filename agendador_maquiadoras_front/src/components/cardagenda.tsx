@@ -1,4 +1,7 @@
-export default function CardAgenda(){
+'use client'
+
+export default function CardAgenda(props:any){
+    
     return(
         <div className="flex flex-col items-center text-green-900">
             <div className="bg-white border-2 border-green-900 rounded-md border-md flex flex-col items-center justify-center py-4">

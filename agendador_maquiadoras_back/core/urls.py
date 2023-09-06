@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import ( AtendimentosAPIView, AtendimentoAPIView,  ClientesAPIView, ProfissionaisAPIView, AgendasAPIView, AgendaAPIView,  ClienteAPIView, ProfissionalAPIView ,
-                    LoginClienteAPIVIew, LoginProfissionalAPIVIew, CriarAtendimentoAPIView
+                    LoginClienteAPIVIew, LoginProfissionalAPIVIew, CriarAtendimentoAPIView, CreateProfissionalAPIView
                     )
 
 urlpatterns = [
@@ -8,9 +8,8 @@ urlpatterns = [
     path(r'cliente/<pk>', ClienteAPIView.as_view(), name='cliente'),
     path('logincliente', LoginClienteAPIVIew.as_view(), name='login_cliente'),    
 
+    path('createprofissional/', CreateProfissionalAPIView.as_view(), name='create_profissional'),
     path('profissionais/', ProfissionaisAPIView.as_view(), name='profissionais'),
-    path(r'profissional/<pk>', ProfissionalAPIView.as_view(), name='profissional'),
-    path('loginprofissional/', LoginProfissionalAPIVIew.as_view(), name='login_profissional'),
 
     path('agendas/', AgendasAPIView.as_view(), name='agendas'),
     path(r'agenda/<pk>', AgendaAPIView.as_view(), name='agenda'),

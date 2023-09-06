@@ -23,57 +23,24 @@ class ClienteAPIView(generics.RetrieveUpdateAPIView):
 # Login Cliente
 class LoginClienteAPIVIew(generics.RetrieveAPIView):
     queryset = Cliente.objects.all()
-    serializer_class = ClienteSerializer
+    serializer_class = LoginClienteSerializer
     http_method_names = ['post','options']
-
-    def post(self, request):
-        email = request.headers.get('Email')
-        senha = request.headers.get('Senha')
-        result = self.queryset.filter(email= email, senha=senha)
-        if len(result) == 0:
-            content = {
-                'message':f"Dados não conferem!",
-                'authorized':False
-                }
-            return Response(content,status=status.HTTP_403_FORBIDDEN)
-
-        content = {'message':f"Autorizado!",
-                   'authorized':True, 'nome':result.values()[0].get('nome')}
-        return Response(content,status=status.HTTP_200_OK)
-
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['email','senha']
 
 # Create Acc Profissional
+class CreateProfissionalAPIView(generics.ListCreateAPIView):
+    queryset = Profissional.objects.all()
+    serializer_class = ProfissionalCreateSerializer
+    http_method_names = ['post']
+
 # Listar Profissionais
-class ProfissionaisAPIView(generics.ListCreateAPIView):
+class ProfissionaisAPIView(generics.RetrieveUpdateAPIView):
     queryset = Profissional.objects.all()
-    serializer_class = ProfissionalSerializer
-    http_method_names = ['get', 'post']
-
-
-# Patch Profissional
-class ProfissionalAPIView(generics.RetrieveUpdateAPIView):
-    queryset = Profissional.objects.all()
-    serializer_class = ProfissionalSerializer
+    serializer_class = ProfissionalGetSerializer
     http_method_names = ['get', 'patch']
-
-
-# Login Profissional
-class LoginProfissionalAPIVIew(generics.RetrieveAPIView):
-    queryset = Profissional.objects.all()
-    serializer_class = ProfissionalSerializer
-    http_method_names = ['get']
-
-    def get(self, request):
-        cpf = request.headers.get('Cpf')
-        senha = request.headers.get('Senha')
-        result = self.queryset.filter(cpf= cpf, senha=senha)
-        if len(result) == 0:
-            content = {f"Dados não conferem!"}
-            return Response(content,status=status.HTTP_403_FORBIDDEN)
-
-        content = {f"Autorizado!"}
-        return Response(content,status=status.HTTP_200_OK)
-
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id','profissao', 'endereco', 'especialidades']
 
 # Agenda
 class AgendasAPIView(generics.ListCreateAPIView):

@@ -13,11 +13,21 @@ class ClienteSerializer(serializers.ModelSerializer):
         model = Cliente
         fields = '__all__'
 
+class LoginClienteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cliente
+        fields = ['nome','email']
 
-class ProfissionalSerializer(serializers.ModelSerializer):
+class ProfissionalCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profissional
         fields = '__all__'
+
+class ProfissionalGetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profissional
+        fields = ['id', 'nome', 'email', 'foto', 'endereco', 'profissao', 'especialidades',
+                  'telefone', 'whatsapp', 'instagram', 'facebook', 'estrelas', 'qtd_atds', 'dt_cadastro']
 
 
 class AgendaSerializer(serializers.ModelSerializer):

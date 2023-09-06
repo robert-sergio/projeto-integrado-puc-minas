@@ -1,6 +1,6 @@
 import CardServicos from "./cardservicos"
 
-export default function CardAgendaDireita(){
+export default function CardAgendaDireita(props:any){
     return(
         <div className="bg-orange-100 rounded-md w-1/2 border-2 border-green-900 p-4 flex flex-col gap-4 justify-between">
             <div className="flex flex-col gap-4 text-green-900">
