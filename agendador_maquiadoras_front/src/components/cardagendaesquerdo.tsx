@@ -1,11 +1,12 @@
+'use client'
 import { IconBrandFacebook, IconBrandInstagram, IconBrandWhatsapp, IconCalendar, IconCalendarFilled, IconMoodSmileFilled, IconStar } from "@tabler/icons-react";
 import Image from "next/image";
 import CardAgenda from "./cardagenda";
+import { useState } from "react";
 
 export default function CardAgendaEsquerdo(props:any){
-    const { profissional } = props
-
-    console.log(profissional)
+    const { profissional, clicado, setClicado } = props
+    const [ escolhido, setEscolhido ] = useState({'id':''})
 
     return(
         <div className="bg-orange-100 rounded-md w-1/2 border-2 border-green-900 p-4 flex text-green-900">
@@ -65,12 +66,20 @@ export default function CardAgendaEsquerdo(props:any){
                     </div>
                 </div>
 
-                <CardAgenda id_profissional={profissional}></CardAgenda>
-
-                <span>Selecionado Data as 10AM </span>
+                <CardAgenda escolhido={escolhido} setEscolhido={setEscolhido}></CardAgenda>
 
                 <div className="flex justify-end">
-                    <button className="bg-green-900 rounded-md p-1 w-48 text-orange-50">Prosseguir</button>
+                    {
+                        escolhido.id === ''?
+                            <></>
+                        :
+                            <button 
+                                onClick={()=> setClicado(!clicado)}
+                                className="bg-green-900 rounded-md p-1 w-48 text-orange-50"
+                            >
+                                Prosseguir
+                            </button>
+                    }
                 </div>
             </div>
 

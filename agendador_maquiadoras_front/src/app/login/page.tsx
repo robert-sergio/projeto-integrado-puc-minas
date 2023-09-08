@@ -24,9 +24,11 @@ export default function LoginPage(){
         setEmail(event.target.value);
     };
     
-    async function Login(){
+    async function Login(event:any){
+        event.preventDefault();
         const data = {
-            'none':'none'
+            'email':email,
+            'senha':senha
         }
         const config = {
             headers: {
@@ -34,7 +36,7 @@ export default function LoginPage(){
             }
         }
         const response = await axios.post(
-            'http://localhost:8000/core/logincliente/?email='+email+'&senha='+senha,data, config
+            'http://localhost:8000/core/logincliente',data, config
         ).then((res)=> {
             console.log(res.data['nome'])
             setLogado(res.data['authorized'])
@@ -60,31 +62,32 @@ export default function LoginPage(){
             <SiteHeader></SiteHeader>
             <div className="flex justify-center items-center">
 
-                <div className="bg-white border-2 border-green-900 flex flex-col rounded-md p-8 gap-8 items-center">
-                    <h1 className="text-xl font-black">Faça seu Login</h1>
-                    <input 
-                        value={email}
-                        onChange={handleEmail}
-                        className="p-1 border-2 border-green-900 rounded-md" placeholder="Email"></input>
-                    
-                    <input 
-                        value={senha}
-                        onChange={handleSenha}
-                        className="p-1 border-2 border-green-900 rounded-md" placeholder="Senha"></input>
-                    
-                    {
-                        loginError?
-                        <span className="text-red-600 font-bold">Login ou senha incorretos</span>
-                        : ''
-                    }
+                <div className="bg-white border-2 border-green-900 rounded-md p-8">
+                    <form onSubmit={Login} className="flex flex-col gap-8 items-center">
+                        <h1 className="text-xl font-black">Faça seu Login</h1>
+                        <input 
+                            value={email}
+                            onChange={handleEmail}
+                            className="p-1 border-2 border-green-900 rounded-md" placeholder="Email"></input>
+                        
+                        <input 
+                            value={senha}
+                            onChange={handleSenha}
+                            className="p-1 border-2 border-green-900 rounded-md" placeholder="Senha"></input>
+                        
+                        {
+                            loginError?
+                            <span className="text-red-600 font-bold">Login ou senha incorretos</span>
+                            : ''
+                        }
 
-                    <button 
-                        onClick={() => Login()}
-                        type='submit'
-                        className="p-1 w-48 rounded-md bg-green-900 text-orange-50"
-                        >
-                        Entrar
-                    </button>
+                        <button 
+                            type='submit'
+                            className="p-1 w-48 rounded-md bg-green-900 text-orange-50"
+                            >
+                            Entrar
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

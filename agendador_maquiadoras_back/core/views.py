@@ -48,8 +48,14 @@ class CreateProfissionalAPIView(generics.ListCreateAPIView):
     serializer_class = ProfissionalCreateSerializer
     http_method_names = ['post']
 
+# Create Acc Profissional
+class UpdtProfissionalAPIView(generics.UpdateAPIView):
+    queryset = Profissional.objects.all()
+    serializer_class = ProfissionalCreateSerializer
+    http_method_names = ['patch']
+
 # Listar Profissionais
-class ProfissionaisAPIView(generics.RetrieveUpdateAPIView):
+class ProfissionaisAPIView(generics.ListAPIView):
     queryset = Profissional.objects.all()
     serializer_class = ProfissionalGetSerializer
     http_method_names = ['get', 'patch']
@@ -63,6 +69,28 @@ class AgendasAPIView(generics.ListCreateAPIView):
     http_method_names = ['get', 'post']
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['profissional']
+
+class CardAgendaAPIView(generics.ListAPIView):
+    http_method_names = ['get']
+
+    def get(self, request):
+        idprofissional = request.query_params.get('profissional',None)
+        content = {}
+
+        if idprofissional:
+            queryset = Agenda.objects.filter(profissional=idprofissional).values('data','id','livre','hora').order_by('data')
+        
+            if len(queryset) > 0:
+                for data in queryset.values('data').distinct('data'):
+                    content[str(data['data'])] = []
+                    for dados in queryset.filter(data=str(data.get('data'))):
+                        content[str(data['data'])].append({
+                            'id':dados['id'],
+                            'livre':dados['livre'],
+                            'hora':dados['hora']
+                        })
+
+        return Response(content, status=status.HTTP_200_OK)
 
 class AgendaAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Agenda.objects.all()

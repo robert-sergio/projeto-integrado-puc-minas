@@ -23,6 +23,7 @@
                 "runserver",
                 "8000"
             ],
+            "env": { "PYTHONPATH": "${workspaceRoot}:venv:Scripts"},
             "django": true,
             "justMyCode": true
         }

@@ -33,8 +33,7 @@ class ProfissionalGetSerializer(serializers.ModelSerializer):
 class AgendaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Agenda
-        fields = '__all__'
-
+        fields= '__all__'
 
 # --------------- Serializers Customizados
 class ProfissionalResumidoSerializer(serializers.ModelSerializer):
