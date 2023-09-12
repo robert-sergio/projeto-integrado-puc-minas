@@ -19,18 +19,21 @@ class Profissional(models.Model):
     email = models.CharField(max_length=100, null=False)
     foto = models.CharField(max_length=250, null=False)
     endereco = models.CharField(max_length=500, null=False)
-    profissao = models.CharField(max_length=250, choices=(('MANICURE','MANICURE'),('MAQUIADORA','MAQUIADORA')))
-    especialidades = models.CharField(max_length=250, choices=(('Unha Acrigel','Unha Acrigel'),('Maquiagem Casamento', 'Maquiagem Casamento')))
-
+    profissao = models.CharField(max_length=250)
     telefone = models.CharField(max_length=25)
     whatsapp = models.CharField(max_length=25)
     instagram = models.CharField(max_length=500, null=True)
     facebook = models.CharField(max_length=500, null=True)
-
     estrelas = models.IntegerField()
     qtd_atds = models.IntegerField()
+    dt_cadastro = models.DateField(default=datetime.now().date, editable=True)
 
-    dt_cadastro = models.DateTimeField(default=tz.now, editable=True)
+
+class Especialidades(models.Model):
+    ativo = models.BooleanField(default=True)
+    especialidade = models.CharField(max_length=250, null=True)
+    preco = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    profissional = models.ForeignKey(Profissional, on_delete=models.CASCADE)
 
 
 class Agenda(models.Model):

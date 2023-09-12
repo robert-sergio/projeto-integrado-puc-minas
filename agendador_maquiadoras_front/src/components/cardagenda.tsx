@@ -9,15 +9,15 @@ export default function CardAgenda(props:any){
     const { id } = pageProps
 
     const { escolhido, setEscolhido } = props
-    const [ agendas, setAgendas ] = useState([])
     const [ selecionado, setSelecionado ] = useState({'className':''})
+    const [ agendas, setAgendas ] = useState([])
     
     async function getAgenda(id:any) {
         const url = 'http://127.0.0.1:8000/core/agendas/?profissional='+id
-        console.log(url)
         const response = await axios.get(
             url
         ).then((res)=> {
+            // setAgendas(JSON.stringify(res.data, null, 2).replace('/\\n/g',''))
             setAgendas(res.data)
         }).catch((err)=>{
             console.log('Error : ', err.response.data.message)
@@ -37,40 +37,59 @@ export default function CardAgenda(props:any){
         setEscolhido({'id': e.target.value})
     }
 
+    // const Colunas = () = {
+
+    // }
+
+    const Botoes = () => {
+            var arr = []
+            var final = []
+
+            agendas.map((agenda:any)=>{
+            const properties = Object.keys(agenda)
+            const property = agenda[properties[0]]
+            
+            arr.push(<div>{properties}</div>)
+            
+            property.map((p:any)=>{
+                arr.push(
+                    // <>{p.id}</>
+                    p.livre ?
+                    <button 
+                        value={p.id}
+                        onClick={botaoSelecionado}
+                        className="p-1 border-2 border-green-900 rounded-md">{p.hora}</button>
+                    :
+                    <button className="p-1 bg-slate-400 rounded-md">{p.hora}</button>
+
+                    )
+                })
+
+                final.push(
+                    <div className="flex flex-col gap-2">
+                        {arr}
+                    </div>
+                )
+
+                arr = []
+                
+            })
+
+
+        return final
+    }
 
     return(
         <div className="flex flex-col items-center text-green-900">
-            <div className="bg-white border-2 border-green-900 rounded-md border-md flex flex-col items-center justify-center py-4">
-                <div className="border-b-2 border-green-900 flex flex-col items-center">
-                    <strong>Agenda de Maquiadora</strong>
-                    <strong>Janeiro 2024</strong>
+            <div className="bg-white border-2 w-full border-green-900 rounded-md border-md flex flex-col items-center justify-center py-4">
+                <div className="border-b-2 w-full border-green-900 flex flex-col items-center">
+                    <strong>Agenda da Profissional</strong>
                 </div>
 
-                <div className="grid grid-cols-7 gap-2 p-4 border-2 border-zinc-400">
-                    
-                    <div className="flex flex-col gap-1">
-
-                        <div className="flex flex-col items-center font-semibold border-b-2 border-zinc-400">
-                            <div className="text-sm">{'agendas'}</div>
-                            <div className="text-xs">Data</div>
-                        </div>
-
-                        {
-                            agendas.map((agenda:any)=>{
-                                return (
-                                    agenda.livre ?
-                                    <button 
-                                        value={agenda.id}
-                                        onClick={botaoSelecionado}
-                                        className="p-1 border-2 border-green-900 rounded-md">{agenda.hora}</button>
-                                    :
-                                    <button className="p-1 bg-slate-400 rounded-md">{agenda.hora}</button>
-                                )
-                            })
-                        }
-                        
-                    </div>
-
+                <div className="flex gap-2 p-4">
+                    {
+                        Botoes()
+                    }
                 </div>
             </div>
         </div>

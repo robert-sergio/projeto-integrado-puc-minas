@@ -1,34 +1,53 @@
+'use client'
+import { useEffect, useState } from "react"
 import CardServicos from "./cardservicos"
+import axios from "axios"
+
+interface agendaProps {
+    id: number
+    data: string
+    hora: string
+    livre: boolean
+    profissional: number
+}
 
 export default function CardAgendaDireita(props:any){
+    const { escolhido, profissional } = props
+    const [ agenda, setAgenda ] = useState<agendaProps>({})
+
+    useEffect(()=>{
+        const url = 'http://127.0.0.1:8000/core/agenda/'+escolhido.id
+        const response = axios.get(url
+        ).then((res)=>{
+            console.log(res.data)
+            setAgenda(res.data)
+        })
+    },[])
+
     return(
         <div className="bg-orange-100 rounded-md w-1/2 border-2 border-green-900 p-4 flex flex-col gap-4 justify-between">
             <div className="flex flex-col gap-4 text-green-900">
                 <div className="flex gap-16">
                     <div className="flex flex-col">
-                        <span className="font-bold text-sm">Localidade :</span> 
-                        <span className="font-bold text-lg"> Cidade do Eixo </span>
-                    </div>
-                    <div className="flex flex-col">
                         <span className="font-bold text-sm">Atender em :</span> 
-                        <span className="font-bold text-lg"> Lugar nenhum </span>
+                        <span className="font-bold text-lg">{profissional.endereco}</span>
                     </div>
                 </div>
 
                 <div className="flex gap-16">
                     <div className="flex flex-col">
                         <span className="font-bold text-sm">Data Atendimento :</span> 
-                        <span className="font-bold text-lg"> 07/01/2024 </span>
+                        <span className="font-bold text-lg">{agenda.data}</span>
                     </div>
                     <div className="flex flex-col">
                         <span className="font-bold text-sm">Horario :</span> 
-                        <span className="font-bold text-lg"> 10 Am </span>
+                        <span className="font-bold text-lg"> {agenda.hora} </span>
                     </div>
                 </div>
 
             </div>
 
-            <CardServicos></CardServicos>
+            <CardServicos idprofissional={profissional.id}/>
 
             <div className="flex flex-col gap-4 text-green-900">
                 <div className="flex flex-col">

@@ -5,8 +5,7 @@ import CardAgenda from "./cardagenda";
 import { useState } from "react";
 
 export default function CardAgendaEsquerdo(props:any){
-    const { profissional, clicado, setClicado } = props
-    const [ escolhido, setEscolhido ] = useState({'id':''})
+    const { profissional, clicado, setClicado, escolhido, setEscolhido } = props
 
     return(
         <div className="bg-orange-100 rounded-md w-1/2 border-2 border-green-900 p-4 flex text-green-900">
@@ -66,7 +65,9 @@ export default function CardAgendaEsquerdo(props:any){
                     </div>
                 </div>
 
-                <CardAgenda escolhido={escolhido} setEscolhido={setEscolhido}></CardAgenda>
+                <CardAgenda 
+                    escolhido={escolhido} setEscolhido={setEscolhido}
+                />
 
                 <div className="flex justify-end">
                     {

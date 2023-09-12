@@ -2,9 +2,10 @@ from django.shortcuts import render
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework import generics
-from .models import Atendimentos, Cliente, Profissional, Agenda
+from .models import Atendimentos, Cliente, Profissional, Agenda, Especialidades
 from .serializers import *
 from django_filters.rest_framework import DjangoFilterBackend
+import json
 
 
 # Create Acc Cliente
@@ -60,7 +61,14 @@ class ProfissionaisAPIView(generics.ListAPIView):
     serializer_class = ProfissionalGetSerializer
     http_method_names = ['get', 'patch']
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['id','profissao', 'endereco', 'especialidades']
+    filterset_fields = ['id','profissao', 'endereco', ] # 'especialidades'
+
+
+class ServicosProfissionalAPIView(generics.ListCreateAPIView):
+    queryset = Especialidades.objects.all()
+    serializer_class = ServicosSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id'] 
 
 # Agenda
 class AgendasAPIView(generics.ListCreateAPIView):
@@ -75,20 +83,24 @@ class CardAgendaAPIView(generics.ListAPIView):
 
     def get(self, request):
         idprofissional = request.query_params.get('profissional',None)
-        content = {}
+        content = []
 
         if idprofissional:
             queryset = Agenda.objects.filter(profissional=idprofissional).values('data','id','livre','hora').order_by('data')
         
             if len(queryset) > 0:
                 for data in queryset.values('data').distinct('data'):
-                    content[str(data['data'])] = []
+                    value = {}
+                    value[str(data['data'])] = []
                     for dados in queryset.filter(data=str(data.get('data'))):
-                        content[str(data['data'])].append({
+                        value[str(data['data'])].append({
                             'id':dados['id'],
                             'livre':dados['livre'],
                             'hora':dados['hora']
                         })
+
+                    content.append(value)
+                    del value
 
         return Response(content, status=status.HTTP_200_OK)
 

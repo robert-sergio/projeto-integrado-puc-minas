@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Atendimentos, Cliente, Profissional, Agenda
+from .models import Atendimentos, Cliente, Profissional, Agenda, Especialidades
 
 
 class AtendimentosSerializer(serializers.ModelSerializer):
@@ -26,8 +26,19 @@ class ProfissionalCreateSerializer(serializers.ModelSerializer):
 class ProfissionalGetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profissional
-        fields = ['id', 'nome', 'email', 'foto', 'endereco', 'profissao', 'especialidades',
+        fields = ['id', 'nome', 'email', 'foto', 'endereco', 'profissao',
                   'telefone', 'whatsapp', 'instagram', 'facebook', 'estrelas', 'qtd_atds', 'dt_cadastro']
+
+
+# class ProfissionalServicosGetSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Profissional
+#         fields = ['especialidades']
+
+class ServicosSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Especialidades
+        fields = '__all__'
 
 
 class AgendaSerializer(serializers.ModelSerializer):
@@ -39,7 +50,7 @@ class AgendaSerializer(serializers.ModelSerializer):
 class ProfissionalResumidoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profissional
-        fields = ['nome', 'profissao', 'especialidades']
+        fields = ['nome', 'profissao', ] #'especialidades'
 
 class ClienteResumidoSerializer(serializers.ModelSerializer):
     class Meta:
