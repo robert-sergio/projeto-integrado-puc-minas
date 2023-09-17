@@ -38,11 +38,10 @@ export default function Pesquisa(){
         const response = await axios.get(
             'http://localhost:8000/core/profissionais/'
         ).then((res)=> {
-            let listaProfissionais = res.data
-            setProfissionais(listaProfissionais)
+            setProfissionais(res.data)
         }).catch((err)=>{
-            console.log('Error : ', err.response.data.message)
-        })     
+            console.log('Error : ', err)
+        })
 
     }
 
@@ -61,6 +60,8 @@ export default function Pesquisa(){
     useEffect(()=>{
         GetProfessional()
     },[])
+
+    console.log(listaProfissionais)
 
     return(
         <div>

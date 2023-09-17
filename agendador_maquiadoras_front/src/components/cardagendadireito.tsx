@@ -14,15 +14,29 @@ interface agendaProps {
 export default function CardAgendaDireita(props:any){
     const { escolhido, profissional } = props
     const [ agenda, setAgenda ] = useState<agendaProps>({})
+    const [ selecionados, setSelecionados ] = useState([])
+    const [ total, setTotal ] = useState(0)
 
     useEffect(()=>{
         const url = 'http://127.0.0.1:8000/core/agenda/'+escolhido.id
         const response = axios.get(url
         ).then((res)=>{
-            console.log(res.data)
             setAgenda(res.data)
         })
     },[])
+
+    function handleSubmit(){
+        const ids = selecionados.map((s:any)=>{
+            return (s.id)
+        })
+        const payload = {
+            "profissional": profissional.id,
+            "cliente": 1,
+            "agenda": agenda.id,
+            "servicos": ids
+        }
+        console.log(payload)
+    }
 
     return(
         <div className="bg-orange-100 rounded-md w-1/2 border-2 border-green-900 p-4 flex flex-col gap-4 justify-between">
@@ -47,12 +61,14 @@ export default function CardAgendaDireita(props:any){
 
             </div>
 
-            <CardServicos idprofissional={profissional.id}/>
+            <CardServicos 
+                total={total} setTotal={setTotal}
+                selecionados={selecionados} setSelecionados={setSelecionados} idprofissional={profissional.id}/>
 
             <div className="flex flex-col gap-4 text-green-900">
                 <div className="flex flex-col">
                     <span className="font-bold text-sm">Valor Final</span> 
-                    <span className="font-bold text-lg"> R$ 100,00 + Deslocamento </span>
+                    <span className="font-bold text-lg"> R$ {total} + Deslocamento </span>
                 </div>
                 <div className="flex flex-col">
                     <span className="font-bold text-sm">Pagando com</span> 
@@ -61,7 +77,15 @@ export default function CardAgendaDireita(props:any){
             </div>
 
             <div className="flex justify-end">
-                <button className="bg-green-900 rounded-md p-1 w-48 text-orange-50">Confirmar agenda</button>
+                {
+                    total ===0?
+                    <button 
+                        className="bg-zinc-500 rounded-md p-1 w-48 text-zinc-300">Confirmar agenda</button>                   
+                    :
+                    <button 
+                        onClick={handleSubmit}
+                        className="bg-green-900 rounded-md p-1 w-48 text-orange-50">Confirmar agenda</button>
+                }
             </div>
         </div>
     )

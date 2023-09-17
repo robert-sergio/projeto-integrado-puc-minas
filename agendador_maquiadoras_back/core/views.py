@@ -68,7 +68,7 @@ class ServicosProfissionalAPIView(generics.ListCreateAPIView):
     queryset = Especialidades.objects.all()
     serializer_class = ServicosSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['id'] 
+    filterset_fields = ['id','profissional'] 
 
 # Agenda
 class AgendasAPIView(generics.ListCreateAPIView):
@@ -78,8 +78,9 @@ class AgendasAPIView(generics.ListCreateAPIView):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['profissional']
 
-class CardAgendaAPIView(generics.ListAPIView):
-    http_method_names = ['get']
+class CardAgendaAPIView(generics.ListCreateAPIView):
+    http_method_names = ['get', 'post']
+    serializer_class = AgendaSerializer
 
     def get(self, request):
         idprofissional = request.query_params.get('profissional',None)
@@ -132,6 +133,11 @@ class CriarAtendimentoAPIView(generics.ListCreateAPIView):
             return Response(content,status=status.HTTP_403_FORBIDDEN)
         
         Agenda.objects.filter(pk=request.data['agenda']).update(livre=False)
+
+        servicos = Especialidades.objects.filter(profissional=request.data['profissional']).only('id', 'preco')
+        valor = sum([ float(servicos.filter(id=x).values()[0]['preco']) for x in request.data['servicos']])
+
+        request.data['valor'] = valor
 
         return self.create(request, *args, **kwargs)
 
