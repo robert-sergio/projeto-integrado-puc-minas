@@ -12,8 +12,13 @@ export default function CardAgendaEsquerdo(props:any){
 
             <div className="w-1/4 border-r-2 border-green-900 flex flex-col items-center justify-center">
                 
-                <Image src={profissional.foto} width={300} height={300} alt=''
-                className="w-32 h-32 rounded-full border-2 border-green-900"></Image>
+                {
+                    profissional.foto != ""?
+                    <Image src={profissional.foto} width={300} height={300} alt='' priority={true}
+                    className="w-32 h-32 rounded-full border-2 border-green-900"></Image>
+                    :
+                    <></>
+                }
                 <strong>{profissional.nome}</strong>
 
                 <div className="flex gap-2">

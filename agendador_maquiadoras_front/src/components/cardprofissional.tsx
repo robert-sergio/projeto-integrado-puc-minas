@@ -15,9 +15,9 @@ export default function CardProfissional(props: ProfissionalProps){
         var arr = []
         for (let i = 1; i < 6; i++) {
             (i <= profissional.estrelas)?
-                arr.push(<IconStarFilled></IconStarFilled>)
+                arr.push(<IconStarFilled key={i}></IconStarFilled>)
             :
-                arr.push(<IconStar></IconStar>)
+                arr.push(<IconStar  key={i}></IconStar>)
         }
         return arr
     }
@@ -25,8 +25,10 @@ export default function CardProfissional(props: ProfissionalProps){
     return(
         <div className="flex border-2 border-green-900 rounded-md bg-orange-100 p-4">
             <div className="flex flex-col justify-center items-center">
-                <Image src={profissional.foto} width={300} height={300} alt=''
-                className="rounded-full w-32 h-32 border-2 border-green-900"></Image>
+                <Image  src={profissional.foto} width={300} height={300} alt=''
+                        className="rounded-full w-32 h-32 border-2 border-green-900"
+                        priority={true}
+                ></Image>
                 <div className="flex flex-col items-center gap-1">
                     <strong className="text-xl font-black text-green-900">{profissional.nome}</strong>
                     <strong className="text-green-800">{profissional.profissao}</strong>

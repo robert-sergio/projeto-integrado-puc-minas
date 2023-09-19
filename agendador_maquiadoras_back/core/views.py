@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework import generics
-from .models import Atendimentos, Cliente, Profissional, Agenda, Especialidades
+from .models import Atendimentos, Cliente, Profissional, Agenda, Servicos
 from .serializers import *
 from django_filters.rest_framework import DjangoFilterBackend
 import json
@@ -65,11 +65,11 @@ class ProfissionaisAPIView(generics.ListAPIView):
     serializer_class = ProfissionalGetSerializer
     http_method_names = ['get', 'patch']
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['id','profissao', 'endereco', ] # 'especialidades'
+    filterset_fields = ['id','profissao', 'endereco', ]
 
 
 class ServicosProfissionalAPIView(generics.ListCreateAPIView):
-    queryset = Especialidades.objects.all()
+    queryset = Servicos.objects.all()
     serializer_class = ServicosSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['id','profissional'] 
@@ -121,7 +121,7 @@ class AtendimentosAPIView(generics.ListAPIView):
     serializer_class = AtendimentosTesteSerializer
     http_method_names = ['get']
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['profissional', 'cliente']
+    filterset_fields = ['profissional', 'cliente', 'cocncluido']
 
 # Criar Agendamentos
 class CriarAtendimentoAPIView(generics.ListCreateAPIView):
@@ -135,16 +135,19 @@ class CriarAtendimentoAPIView(generics.ListCreateAPIView):
         if not livre:
             content = {f"Agenda nao disponivel!"}
             return Response(content,status=status.HTTP_403_FORBIDDEN)
-        
-        Agenda.objects.filter(pk=request.data['agenda']).update(livre=False)
 
-        servicos = Especialidades.objects.filter(profissional=request.data['profissional']).only('id', 'preco')
+        servicos = Servicos.objects.filter(profissional=request.data['profissional']).only('id', 'preco')
         valor = sum([ float(servicos.filter(id=x).values()[0]['preco']) for x in request.data['servicos']])
 
         request.data['valor'] = valor
         request.data['msg'] = 'Aguardando Confirmacao'
+        request.data['servicos'] = 1
 
-        return self.create(request, *args, **kwargs)
+        self.create(request, *args, **kwargs)
+        Agenda.objects.filter(pk=request.data['agenda']).update(livre=False)
+
+
+        return Response('Deu bom',status=status.HTTP_201_CREATED)
 
 # Cancelamento Cliente
 # Cancelamento Profissional
@@ -169,6 +172,6 @@ class AtendimentoAPIView(generics.RetrieveUpdateDestroyAPIView):
         if livre != None:
             agd = Agenda.objects.filter(pk=atd.agenda_id).update(livre=livre)
         
-        Atendimentos.objects.update(**values)
+        Atendimentos.objects.filter(pk=pk).update(**values)
         content = {f"Autorizado!"}
         return Response(content,status=status.HTTP_200_OK)

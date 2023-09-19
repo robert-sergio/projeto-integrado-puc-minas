@@ -1,8 +1,23 @@
 'use client'
 import Image from "next/image";
+import axios from "axios"
 
 export default function Atendimento(props:any){
-    const { dados } = props
+    const { dados, setUpdtd } = props
+
+    async function CancelAtd(id:number) {
+        const url = 'http://127.0.0.1:8000/core/atendimento/'+id
+
+        const payload = {
+            "cocncluido": true,
+            "livre": true
+        }
+        console.log(url)
+        const response = await axios.patch(url, payload
+            ).then(res=> console.log(res))
+        
+        setUpdtd(false)
+    }
 
     return(
         <div className="flex justify-between gap-4 border-2 rounded-md border-green-900 px-16 py-2 items-center">
@@ -37,7 +52,9 @@ export default function Atendimento(props:any){
 
             </div>
 
-            <button className="px-4 py-1 bg-green-900 text-green-50 rounded-md hover:bg-green-800">
+            <button
+                onClick={()=>CancelAtd(dados.pk)}
+                className="px-4 py-1 bg-green-900 text-green-50 rounded-md hover:bg-green-800">
                 Cancelar
             </button>
 

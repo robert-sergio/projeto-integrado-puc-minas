@@ -17,7 +17,6 @@ export default function CardAgenda(props:any){
         const response = await axios.get(
             url
         ).then((res)=> {
-            // setAgendas(JSON.stringify(res.data, null, 2).replace('/\\n/g',''))
             setAgendas(res.data)
         }).catch((err)=>{
             console.log('Error : ', err.response.data.message)
@@ -49,33 +48,36 @@ export default function CardAgenda(props:any){
             const properties = Object.keys(agenda)
             const property = agenda[properties[0]]
             
-            arr.push(<div>{properties}</div>)
-            
+            arr.push(<div key={property}>{properties}</div>)
+
             property.map((p:any)=>{
                 arr.push(
-                    // <>{p.id}</>
                     p.livre ?
                     <button 
+                        key={p.id}
                         value={p.id}
                         onClick={botaoSelecionado}
                         className="p-1 border-2 border-green-900 rounded-md">{p.hora}</button>
                     :
-                    <button className="p-1 bg-slate-400 rounded-md">{p.hora}</button>
-
-                    )
-                })
-
-                final.push(
-                    <div className="flex flex-col gap-2">
-                        {arr}
-                    </div>
+                    <button 
+                        key={p.id}
+                        className="p-1 bg-slate-400 rounded-md">{p.hora}</button>
                 )
+            })
+
+            final.push(
+                <div 
+                    key={properties}
+                    className="flex flex-col gap-2">
+                    {arr}
+                </div>
+            )
 
                 arr = []
                 
             })
 
-
+        
         return final
     }
 

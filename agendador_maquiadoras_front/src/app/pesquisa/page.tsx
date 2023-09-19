@@ -76,7 +76,7 @@ export default function Pesquisa(){
 
                     {
                         listaProfissionais.map((profissional:any) => {
-                            return <CardProfissional key={profissional.id} profissional={profissional}></CardProfissional>
+                            return (<CardProfissional key={profissional.id} profissional={profissional}></CardProfissional>)
                         })
                     }
 

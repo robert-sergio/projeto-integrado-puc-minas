@@ -27,9 +27,10 @@ class Profissional(models.Model):
     estrelas = models.IntegerField()
     qtd_atds = models.IntegerField()
     dt_cadastro = models.DateField(default=datetime.now().date(), editable=True)
+    especialidades = models.CharField(max_length=500, null=True)
 
 
-class Especialidades(models.Model):
+class Servicos(models.Model):
     ativo = models.BooleanField(default=True)
     especialidade = models.CharField(max_length=250, null=True)
     preco = models.DecimalField(max_digits=10, decimal_places=2, null=True)
@@ -47,7 +48,7 @@ class Agenda(models.Model):
     
 
 class Atendimentos(models.Model):
-    servicos = models.ForeignKey(Especialidades, on_delete=models.CASCADE)
+    servicos = models.CharField(max_length=100)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     profissional = models.ForeignKey(Profissional, related_name='profissionais', on_delete=models.CASCADE)
     agenda = models.ForeignKey(Agenda, on_delete=models.CASCADE)
