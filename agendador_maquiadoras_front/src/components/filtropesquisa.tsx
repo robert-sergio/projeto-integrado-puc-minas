@@ -33,8 +33,6 @@ export default function FiltroPesquisa(props:any){
     const [ especialidade, setEspecialidade ] = useState<string>('Maquiagem Casamento')
     const [ localidade, setLocalidade ] = useState<string>('rua cazuza ramos')
 
-    console.log(localidade)
-
     return (
         <div className="flex justify-center items-center gap-16 px-8 py-4 bg-orange-100 w-full">
             <div className="w-4/5 flex gap-1 bg-white px-4 py-2 border rounded-md">

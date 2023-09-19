@@ -7,7 +7,7 @@ import Link from "next/link";
 import ProfissionalProps from "@/model/lista_profissional";
 
 export default function CardProfissional(props: ProfissionalProps){
-    const logado = useContext(LoginContext)
+    const { logado } = useContext(LoginContext)
 
     const { profissional } = props
 

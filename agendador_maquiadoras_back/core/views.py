@@ -38,8 +38,12 @@ class LoginClienteAPIVIew(generics.RetrieveAPIView):
                 }
             return Response(content,status=status.HTTP_403_FORBIDDEN)
 
-        content = {'message':f"Autorizado!",
-                   'authorized':True, 'nome':result.values()[0].get('nome')}
+        content = {
+                   'message':f"Autorizado!",
+                   'authorized':True, 
+                   'nome':result.values()[0].get('nome'),
+                   'id':result.values()[0].get('id')
+                   }
         return Response(content,status=status.HTTP_200_OK)
 
 
@@ -138,6 +142,7 @@ class CriarAtendimentoAPIView(generics.ListCreateAPIView):
         valor = sum([ float(servicos.filter(id=x).values()[0]['preco']) for x in request.data['servicos']])
 
         request.data['valor'] = valor
+        request.data['msg'] = 'Aguardando Confirmacao'
 
         return self.create(request, *args, **kwargs)
 

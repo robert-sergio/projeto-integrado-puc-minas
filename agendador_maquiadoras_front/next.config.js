@@ -4,7 +4,8 @@ const nextConfig = {
         domains: [
             'source.unsplash.com',
             'images.nightcafe.studio',
-            'encrypted-tbn0.gstatic.com'
+            'encrypted-tbn0.gstatic.com',
+            'ia601609.us.archive.org'
         ],
       },
 }

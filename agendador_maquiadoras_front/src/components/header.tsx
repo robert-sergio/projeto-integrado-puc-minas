@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useContext, useEffect } from "react"
 
 export default function SiteHeader(props:any) {
-    const { logado, setLogado, nome} = useContext(LoginContext)
+    const { logado, setLogado, usuario} = useContext(LoginContext)
 
     return(
         <div className={`
@@ -21,11 +21,11 @@ export default function SiteHeader(props:any) {
                 {props.children}
 
                 {
-                    nome == ''?
+                    usuario.nome == ''?
                     ''
                     :
                     <div className="flex gap-8">
-                        <span>Bem vindo, {nome}</span>
+                        <span>Bem vindo, {usuario.nome}</span>
                         <Link href='/pesquisa'>
                             <span>Encontre seu Profissional</span>
                         </Link>

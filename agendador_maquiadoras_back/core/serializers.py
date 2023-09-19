@@ -30,11 +30,6 @@ class ProfissionalGetSerializer(serializers.ModelSerializer):
                   'telefone', 'whatsapp', 'instagram', 'facebook', 'estrelas', 'qtd_atds', 'dt_cadastro']
 
 
-# class ProfissionalServicosGetSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Profissional
-#         fields = ['especialidades']
-
 class ServicosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Especialidades
@@ -50,7 +45,7 @@ class AgendaSerializer(serializers.ModelSerializer):
 class ProfissionalResumidoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profissional
-        fields = ['nome', 'profissao', ] #'especialidades'
+        fields = ['nome', 'profissao', 'foto'] #'especialidades'
 
 class ClienteResumidoSerializer(serializers.ModelSerializer):
     class Meta:

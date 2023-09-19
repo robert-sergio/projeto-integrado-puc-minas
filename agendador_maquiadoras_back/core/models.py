@@ -26,7 +26,7 @@ class Profissional(models.Model):
     facebook = models.CharField(max_length=500, null=True)
     estrelas = models.IntegerField()
     qtd_atds = models.IntegerField()
-    dt_cadastro = models.DateField(default=datetime.now().date, editable=True)
+    dt_cadastro = models.DateField(default=datetime.now().date(), editable=True)
 
 
 class Especialidades(models.Model):
@@ -47,6 +47,7 @@ class Agenda(models.Model):
     
 
 class Atendimentos(models.Model):
+    servicos = models.ForeignKey(Especialidades, on_delete=models.CASCADE)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     profissional = models.ForeignKey(Profissional, related_name='profissionais', on_delete=models.CASCADE)
     agenda = models.ForeignKey(Agenda, on_delete=models.CASCADE)

@@ -6,7 +6,9 @@ import SiteHeader from "@/components/header";
 import { useParams } from "next/navigation";
 
 import axios from "axios"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { LoginContext } from "@/data/contexts/LoginContext"
+import { useRouter } from 'next/navigation'
 
 const profissional_object = {
     "foto":""
@@ -14,6 +16,12 @@ const profissional_object = {
 
 export default function AgendamentoPage(props:any){
     const pageProps = useParams()
+    const router = useRouter()
+    const { logado } = useContext(LoginContext)
+    if (logado === false){
+        router.push('/login')
+    }
+
 
     const [ profissional, setProfissional ] = useState(profissional_object)
     const [ escolhido, setEscolhido ] = useState({'id':''})
@@ -29,7 +37,6 @@ export default function AgendamentoPage(props:any){
         })     
     }
 
-    // console.log(pageProps.id)
     useEffect(()=>{
         GetProfessionalId(pageProps.id)
     },[])

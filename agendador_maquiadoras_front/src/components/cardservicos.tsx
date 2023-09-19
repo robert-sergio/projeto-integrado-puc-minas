@@ -44,7 +44,6 @@ export default function CardServicos(props:any){
         })
         
         setTotal(precos.reduce((partialSum, a) => partialSum + a, 0))
-        console.log('ok')
     }, [selecionados])
 
 
@@ -76,14 +75,9 @@ export default function CardServicos(props:any){
         <div className="h-3/5 flex flex-col gap-4">
             <h1>Serviços:</h1>
             <div className="bg-white h-full flex flex-col gap-2 p-4 border-2 border-green-900 rounded-md overflow-auto">
-            <button onClick={()=> {
-                console.log(selecionados)
-                console.log(total)
-                }}> ver selecionado</button>
             {
                 Opcoes()
             }
-
             </div>
         </div>
     )

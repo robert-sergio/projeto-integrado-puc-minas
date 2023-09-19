@@ -61,8 +61,6 @@ export default function Pesquisa(){
         GetProfessional()
     },[])
 
-    console.log(listaProfissionais)
-
     return(
         <div>
             <SiteHeader></SiteHeader>

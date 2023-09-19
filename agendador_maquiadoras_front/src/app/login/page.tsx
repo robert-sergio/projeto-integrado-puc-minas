@@ -3,14 +3,13 @@ import SiteHeader from "@/components/header";
 import { LoginContext } from "@/data/contexts/LoginContext";
 import axios from "axios"
 import { useState, useContext, useEffect } from "react";
-// import { useRouter } from "next/router";
 import { useRouter } from 'next/navigation'
 
 export default function LoginPage(){
     const router = useRouter()
 
     const { logado, setLogado } = useContext(LoginContext)
-    const { nome, setNome } = useContext(LoginContext)
+    const { usuario, setUsuario } = useContext(LoginContext)
 
     const [ loginError, setLoginError ] = useState<boolean>(false)
 
@@ -38,9 +37,11 @@ export default function LoginPage(){
         const response = await axios.post(
             'http://localhost:8000/core/logincliente',data, config
         ).then((res)=> {
-            console.log(res.data['nome'])
             setLogado(res.data['authorized'])
-            setNome(res.data['nome'])
+            setUsuario({
+                nome:res.data['nome'],
+                id:res.data['id']
+            })
             setLoginError(false)
             router.push('/pesquisa')
         }).catch((err)=>{
@@ -66,11 +67,13 @@ export default function LoginPage(){
                     <form onSubmit={Login} className="flex flex-col gap-8 items-center">
                         <h1 className="text-xl font-black">Faça seu Login</h1>
                         <input 
+                            type='email'
                             value={email}
                             onChange={handleEmail}
                             className="p-1 border-2 border-green-900 rounded-md" placeholder="Email"></input>
                         
                         <input 
+                            type='password'
                             value={senha}
                             onChange={handleSenha}
                             className="p-1 border-2 border-green-900 rounded-md" placeholder="Senha"></input>
