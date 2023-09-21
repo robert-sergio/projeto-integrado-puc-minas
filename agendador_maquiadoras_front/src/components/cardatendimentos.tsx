@@ -24,7 +24,7 @@ export default function CardAtendimentos(){
 
     useEffect(()=>{
         valores()
-    },[updtd])
+    },[])
 
     return(
         <div className="bg-orange-100 border-2 rounded-md p-4 flex flex-col gap-4">

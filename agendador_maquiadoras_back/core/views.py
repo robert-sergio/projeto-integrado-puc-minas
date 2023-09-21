@@ -68,6 +68,7 @@ class ProfissionaisAPIView(generics.ListAPIView):
     filterset_fields = ['id','profissao', 'endereco', ]
 
 
+# Servicos
 class ServicosProfissionalAPIView(generics.ListCreateAPIView):
     queryset = Servicos.objects.all()
     serializer_class = ServicosSerializer
@@ -123,7 +124,28 @@ class AtendimentosAPIView(generics.ListAPIView):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['profissional', 'cliente', 'cocncluido']
 
-# Criar Agendamentos
+
+# Filtros
+class FiltrosPesquisaAPIView(generics.ListAPIView):
+    queryset = Profissional.objects.all()
+
+    def get(self, request):
+        profissoes = [x['profissao'] for x in self.queryset.values()]
+        profissoes = list(set(profissoes))
+
+        endereco = [x['endereco'] for x in self.queryset.values()]
+        endereco = list(set(endereco))
+
+        payload = {
+            'profissoes': profissoes,
+            'enderecos': endereco
+        }
+        return Response(payload,status=status.HTTP_200_OK)
+
+
+
+
+# Criar Atendimento
 class CriarAtendimentoAPIView(generics.ListCreateAPIView):
     queryset = Atendimentos.objects.all()
     serializer_class = AtendimentosSerializer
@@ -141,16 +163,13 @@ class CriarAtendimentoAPIView(generics.ListCreateAPIView):
 
         request.data['valor'] = valor
         request.data['msg'] = 'Aguardando Confirmacao'
-        request.data['servicos'] = 1
 
         self.create(request, *args, **kwargs)
         Agenda.objects.filter(pk=request.data['agenda']).update(livre=False)
-
-
         return Response('Deu bom',status=status.HTTP_201_CREATED)
 
-# Cancelamento Cliente
-# Cancelamento Profissional
+
+# Alterar Atendimento
 class AtendimentoAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Atendimentos.objects.all()
     serializer_class = AtendimentosTesteSerializer

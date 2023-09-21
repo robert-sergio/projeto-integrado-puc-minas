@@ -55,13 +55,33 @@ class ClienteResumidoSerializer(serializers.ModelSerializer):
 class AgendaReduzidaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Agenda
-        fields = ['pk', 'data', 'hora', 'livre']
+        fields = ['data', 'hora']
+
+
+class ServicosResumidoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Servicos
+        fields = ['id', 'preco', 'especialidade']
+
 
 class AtendimentosTesteSerializer(serializers.ModelSerializer):
     cliente = ClienteResumidoSerializer()
     profissional =  ProfissionalResumidoSerializer()
     agenda = AgendaReduzidaSerializer()
+    servicos = ServicosResumidoSerializer(read_only=True, many=True)
     class Meta:
         model = Atendimentos
-        fields = ['pk', 'dt_atualizacao', 'msg','valor','cocncluido','cidade_atendimento', 'cliente', 'profissional', 'agenda']
+        fields = ['pk', 'dt_atualizacao', 'msg','valor','cocncluido','cidade_atendimento', 'cliente', 'profissional', 'agenda', 'servicos']
 
+
+class ProfissaoFiltroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profissional
+        fields = ['profissao']
+
+class FiltroSerializer(serializers.ModelSerializer):
+    profissoes = ProfissaoFiltroSerializer(read_only=True)
+
+    class Meta:
+        model = Profissional
+        fields = ['profissoes']

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.hashers import make_password
 from django.utils import timezone as tz
 from datetime import datetime
+from django.contrib.postgres.fields import ArrayField
 
 class Cliente(models.Model):
     nome = models.CharField(max_length=250, null=False)
@@ -48,7 +49,7 @@ class Agenda(models.Model):
     
 
 class Atendimentos(models.Model):
-    servicos = models.CharField(max_length=100)
+    servicos = models.ManyToManyField(Servicos)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     profissional = models.ForeignKey(Profissional, related_name='profissionais', on_delete=models.CASCADE)
     agenda = models.ForeignKey(Agenda, on_delete=models.CASCADE)

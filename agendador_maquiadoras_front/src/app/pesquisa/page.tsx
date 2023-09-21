@@ -45,8 +45,8 @@ export default function Pesquisa(){
 
     }
 
-    async function GetProfessionalFiltrado(profissao:string, especialidade:string, localidade:string){
-        const url = 'http://localhost:8000/core/profissionais/?profissao='+profissao+'&especialidades='+especialidade+'&endereco='+localidade
+    async function GetProfessionalFiltrado(profissao:string, localidade:string){
+        const url = 'http://localhost:8000/core/profissionais/?profissao='+profissao+'&endereco='+localidade
         const response = await axios.get(
             url
         ).then((res)=> {

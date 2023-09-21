@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import ( AtendimentosAPIView, AtendimentoAPIView,  ClientesAPIView, ProfissionaisAPIView, AgendasAPIView, AgendaAPIView,  ClienteAPIView,
                     LoginClienteAPIVIew, CriarAtendimentoAPIView, CreateProfissionalAPIView, UpdtProfissionalAPIView,
-                    CardAgendaAPIView, ServicosProfissionalAPIView # ServicosProfissionalAPIView
+                    CardAgendaAPIView, ServicosProfissionalAPIView, FiltrosPesquisaAPIView
                     )
 
 urlpatterns = [
@@ -18,7 +18,7 @@ urlpatterns = [
 
     path('servicos/', ServicosProfissionalAPIView.as_view(), name='servicos'),
 
-    # path('servicos/', ServicosProfissionalAPIView.as_view(), name='servicos' ),
+    path('filtropesquisa/', FiltrosPesquisaAPIView.as_view(), name='servicos' ),
 
     path('novo_atendimento/', CriarAtendimentoAPIView.as_view(), name='novo_atendimentos'),
 
