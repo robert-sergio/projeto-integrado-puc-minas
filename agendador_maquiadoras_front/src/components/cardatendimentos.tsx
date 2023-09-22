@@ -3,6 +3,7 @@ import Atendimento from "./atendimento";
 import axios from "axios"
 import { useState, useEffect, useContext, useCallback } from "react";
 import { LoginContext } from "@/data/contexts/LoginContext"
+import { IconMoodSad } from "@tabler/icons-react";
 
 
 export default function CardAtendimentos(){
@@ -29,6 +30,12 @@ export default function CardAtendimentos(){
     return(
         <div className="bg-orange-100 border-2 rounded-md p-4 flex flex-col gap-4">
         {
+            atds.length === 0?
+                <div className="text-green-900 font-bold flex gap-2 text-xl px-4">
+                    <IconMoodSad/>
+                    <span>Voce ainda nao possui atendimentos agendados</span>
+                </div>
+            :
             atds.map((atd:any)=>{
                 return(
                     <Atendimento key={atd.pk} dados={atd} setUpdtd={setUpdtd}></Atendimento>

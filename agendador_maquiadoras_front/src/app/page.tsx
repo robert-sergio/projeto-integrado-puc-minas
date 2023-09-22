@@ -7,9 +7,7 @@ export default function Home() {
   return (
     <main className='bg-orange-100 h-screen flex flex-col text-green-800 gap-32'>
 
-      <SiteHeader>
-        <span>Agende seu atendimento</span>
-      </SiteHeader>
+      <SiteHeader/>
 
       <div className='flex justify-center'>
         <strong className='text-4xl'>

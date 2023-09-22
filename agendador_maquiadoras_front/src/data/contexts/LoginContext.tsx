@@ -1,5 +1,5 @@
 'use client'
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 interface UsuarioProps{
     nome:string,
@@ -19,6 +19,26 @@ export const LoginContext = createContext<LoginContextProps>({} as any)
 export function LoginProvider(props:any){
     const [logado, setLogado] = useState<boolean>(false)
     const [usuario, setUsuario] =useState({nome:'', id:0})
+
+    useEffect(() => {
+        const data = window.localStorage.getItem('MY_APP_STATE');
+        if ( data !== null ) setLogado(JSON.parse(data));
+    }, []);
+
+    useEffect(() => {
+        const data = window.localStorage.getItem('MY_APP_STATE_2');
+        if ( data !== null ) setUsuario(JSON.parse(data));
+    }, []);
+
+    useEffect(() => {
+        window.localStorage.setItem('MY_APP_STATE', JSON.stringify(logado));
+      }, [logado]);
+
+    useEffect(() => {
+        window.localStorage.setItem('MY_APP_STATE_2', JSON.stringify(usuario));
+        console.log(usuario)
+    }, [usuario]);      
+
 
     return(
         <LoginContext.Provider value={{logado, setLogado, usuario, setUsuario}}>
