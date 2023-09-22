@@ -9,7 +9,7 @@ export default function Atendimento(props:any){
         const url = 'http://127.0.0.1:8000/core/atendimento/'+id
 
         const payload = {
-            "cocncluido": true,
+            "concluido": true,
             "livre": true
         }
         const response = await axios.patch(url, payload
@@ -41,7 +41,7 @@ export default function Atendimento(props:any){
                     {
                         dados.servicos.map((serv:any)=>{
                             return(
-                                <span key={serv.id} className="font-bold text-sm">{serv.especialidade} por R$ {serv.preco}</span>
+                                <span key={serv.id} className="font-bold text-sm">{serv.sobre} por R$ {serv.preco}</span>
                         )})
                     }
                     <span className="font-bold text-sm">No total de R$ {dados.valor}</span>

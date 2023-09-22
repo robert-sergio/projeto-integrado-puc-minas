@@ -58,7 +58,7 @@ export default function CardProfissional(props: ProfissionalProps){
                     <span>{profissional.endereco}</span>
 
                     <strong>Sobre o Profissional :</strong>
-                    <span>{profissional.especialidades}</span>
+                    <span>{profissional.sobre}</span>
                 </div>
 
                 <Link href={logado? '/agendamento/' + profissional.id:'/login'}>

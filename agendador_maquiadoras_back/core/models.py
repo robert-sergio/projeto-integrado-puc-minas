@@ -6,34 +6,22 @@ from django.contrib.postgres.fields import ArrayField
 
 class Cliente(models.Model):
     nome = models.CharField(max_length=250, null=False)
-    endereco = models.CharField(max_length=500, null=False)
-    telefone = models.CharField(max_length=25)
-    whatsapp = models.CharField(max_length=25)
     email = models.CharField(max_length=100, null=False, unique=True)
     senha = models.CharField(max_length=24, null=False)
 
 
 class Profissional(models.Model):
     nome = models.CharField(max_length=250, null=False)
-    cpf = models.CharField(max_length=15, null=False, unique=True)
-    senha = models.CharField(max_length=24, null=False)
-    email = models.CharField(max_length=100, null=False)
     foto = models.CharField(max_length=250, null=False)
     endereco = models.CharField(max_length=500, null=False)
     profissao = models.CharField(max_length=250)
-    telefone = models.CharField(max_length=25)
-    whatsapp = models.CharField(max_length=25)
-    instagram = models.CharField(max_length=500, null=True)
-    facebook = models.CharField(max_length=500, null=True)
     estrelas = models.IntegerField()
     qtd_atds = models.IntegerField()
-    dt_cadastro = models.DateField(default=datetime.now().date(), editable=True)
-    especialidades = models.CharField(max_length=500, null=True)
+    sobre = models.CharField(max_length=500, null=True)
 
 
 class Servicos(models.Model):
-    ativo = models.BooleanField(default=True)
-    especialidade = models.CharField(max_length=250, null=True)
+    servico = models.CharField(max_length=250, null=True)
     preco = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     profissional = models.ForeignKey(Profissional, on_delete=models.CASCADE)
 
@@ -60,6 +48,6 @@ class Atendimentos(models.Model):
     msg = models.CharField(max_length=100)
 
     dt_created = models.DateTimeField(default=tz.now, editable=False)
-    dt_atualizacao = models.DateTimeField(default=tz.now)
-    cocncluido = models.BooleanField(default=False)
+    dt_updated = models.DateTimeField(default=tz.now)
+    concluido = models.BooleanField(default=False)
 

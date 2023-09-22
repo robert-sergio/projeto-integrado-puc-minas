@@ -122,7 +122,7 @@ class AtendimentosAPIView(generics.ListAPIView):
     serializer_class = AtendimentosTesteSerializer
     http_method_names = ['get']
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['profissional', 'cliente', 'cocncluido']
+    filterset_fields = ['profissional', 'cliente', 'concluido']
 
 
 # Filtros
@@ -182,8 +182,8 @@ class AtendimentoAPIView(generics.RetrieveUpdateDestroyAPIView):
         
         values = {}
 
-        if request.data.get('cocncluido',None) is not None:
-            values['cocncluido'] = request.data.get('cocncluido',None)
+        if request.data.get('concluido',None) is not None:
+            values['concluido'] = request.data.get('concluido',None)
 
         if request.data.get('msg',None) is not None:
             values['msg'] = request.data.get('msg',None)

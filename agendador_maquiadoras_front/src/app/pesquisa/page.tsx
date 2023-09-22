@@ -8,27 +8,6 @@ import { LoginContext } from "@/data/contexts/LoginContext";
 
 import axios from "axios"
 
-interface Profissional {
-    id : number
-    nome : string 
-    email : string
-    foto : string 
-    profissao : string
-    especialidades : [string] 
-    endereco : string 
-    telefone : string
-    whatsapp : string
-    instagram : string
-    facebook : string
-    estrelas : number
-    qtd_atds : number
-    dt_cadastro : Date
-}
-
-interface listaProfissionais {
-    profissional: Profissional
-}
-
 export default function Pesquisa(){
     const { logado } = useContext(LoginContext)
 

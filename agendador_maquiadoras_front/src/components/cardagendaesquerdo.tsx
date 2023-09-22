@@ -65,8 +65,8 @@ export default function CardAgendaEsquerdo(props:any){
                         <span>{profissional.endereco}</span>
                     </div>
                     <div className="flex flex-col">
-                        <strong>Especialidades</strong>
-                        <span>{profissional.especialidades}</span>
+                        <strong>Sobre</strong>
+                        <span>{profissional.sobre}</span>
                     </div>
                 </div>
 

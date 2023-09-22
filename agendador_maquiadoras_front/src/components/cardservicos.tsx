@@ -43,7 +43,7 @@ export default function CardServicos(props:any){
             )
         })
         
-        setTotal(precos.reduce((partialSum, a) => partialSum + a, 0))
+        setTotal(precos.reduce((partialSum:any, a:any) => partialSum + a, 0))
     }, [selecionados])
 
 
@@ -64,7 +64,7 @@ export default function CardServicos(props:any){
                             value={servico.id}
                             onChange={()=>handleLista(servico)}
                         />
-                        <span className="">{servico.especialidade}</span>
+                        <span className="">{servico.servico}</span>
                     </div>
                     <span>R$ {servico.preco}</span>
                 </div>

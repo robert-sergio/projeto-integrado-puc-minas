@@ -26,8 +26,8 @@ class ProfissionalCreateSerializer(serializers.ModelSerializer):
 class ProfissionalGetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profissional
-        fields = ['id', 'nome', 'email', 'foto', 'endereco', 'profissao',
-                  'telefone', 'whatsapp', 'instagram', 'facebook', 'estrelas', 'qtd_atds', 'dt_cadastro', 'especialidades']
+        fields = ['id', 'nome', 'foto', 'endereco', 'profissao',
+                  'estrelas', 'qtd_atds', 'sobre']
 
 
 class ServicosSerializer(serializers.ModelSerializer):
@@ -45,7 +45,7 @@ class AgendaSerializer(serializers.ModelSerializer):
 class ProfissionalResumidoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profissional
-        fields = ['nome', 'profissao', 'foto'] #'especialidades'
+        fields = ['nome', 'profissao', 'foto']
 
 class ClienteResumidoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -61,7 +61,7 @@ class AgendaReduzidaSerializer(serializers.ModelSerializer):
 class ServicosResumidoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Servicos
-        fields = ['id', 'preco', 'especialidade']
+        fields = ['id', 'preco', 'servico']
 
 
 class AtendimentosTesteSerializer(serializers.ModelSerializer):
@@ -71,7 +71,7 @@ class AtendimentosTesteSerializer(serializers.ModelSerializer):
     servicos = ServicosResumidoSerializer(read_only=True, many=True)
     class Meta:
         model = Atendimentos
-        fields = ['pk', 'dt_atualizacao', 'msg','valor','cocncluido','cidade_atendimento', 'cliente', 'profissional', 'agenda', 'servicos']
+        fields = ['pk', 'dt_updated', 'msg','valor','concluido','cidade_atendimento', 'cliente', 'profissional', 'agenda', 'servicos']
 
 
 class ProfissaoFiltroSerializer(serializers.ModelSerializer):

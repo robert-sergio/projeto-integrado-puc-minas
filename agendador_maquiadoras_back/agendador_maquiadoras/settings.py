@@ -102,7 +102,7 @@ WSGI_APPLICATION = "agendador_maquiadoras.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'localdb',
+        'NAME': 'makeupme',
         'USER': 'django',
         'PASSWORD': 'admin',
         'HOST': 'localhost',

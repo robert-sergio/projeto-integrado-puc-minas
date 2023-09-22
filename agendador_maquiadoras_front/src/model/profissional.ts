@@ -4,7 +4,7 @@ export default interface Profissional {
     email : string
     foto : string 
     profissao : string
-    especialidades : [string] 
+    sobre : string 
     endereco : string 
     telefone : string
     whatsapp : string
@@ -12,5 +12,4 @@ export default interface Profissional {
     facebook : string
     estrelas : number
     qtd_atds : number
-    dt_cadastro : Date
 }

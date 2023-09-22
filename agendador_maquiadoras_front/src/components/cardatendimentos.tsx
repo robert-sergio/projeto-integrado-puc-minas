@@ -11,7 +11,7 @@ export default function CardAtendimentos(){
     const [ updtd, setUpdtd ] = useState(false)
 
     async function GetAtendimentos(idCliente:number) {
-        const url = 'http://127.0.0.1:8000/core/atendimentos/?cliente='+idCliente+'&cocncluido=false'
+        const url = 'http://127.0.0.1:8000/core/atendimentos/?cliente='+idCliente+'&concluido=false'
         const response = await axios.get(url)
         return response.data
     }
