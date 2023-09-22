@@ -25,7 +25,21 @@ export default function Pesquisa(){
     }
 
     async function GetProfessionalFiltrado(profissao:string, localidade:string){
-        const url = 'http://localhost:8000/core/profissionais/?profissao='+profissao+'&endereco='+localidade
+        const url = (() =>{
+            if ( profissao === 'todos' && localidade === 'todos'){
+                return 'http://localhost:8000/core/profissionais/'
+            }
+            if ( profissao === 'todos' ){
+                return 'http://localhost:8000/core/profissionais/?endereco='+localidade
+            }
+            if ( localidade === 'todos'){
+                return 'http://localhost:8000/core/profissionais/?profissao='+profissao
+            }
+            else { 
+                return 'http://localhost:8000/core/profissionais/?profissao='+profissao+'&endereco='+localidade
+            }
+        })();
+
         const response = await axios.get(
             url
         ).then((res)=> {
@@ -33,7 +47,7 @@ export default function Pesquisa(){
             setProfissionais(listaProfissionais)
         }).catch((err)=>{
             console.log('Error : ', err.response.data.message)
-        })     
+        })
     }
     
     useEffect(()=>{

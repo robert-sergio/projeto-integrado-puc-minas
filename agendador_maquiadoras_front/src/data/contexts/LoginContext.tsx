@@ -36,7 +36,6 @@ export function LoginProvider(props:any){
 
     useEffect(() => {
         window.localStorage.setItem('MY_APP_STATE_2', JSON.stringify(usuario));
-        console.log(usuario)
     }, [usuario]);      
 
 

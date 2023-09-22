@@ -41,15 +41,10 @@ export default function CardProfissional(props: ProfissionalProps){
                 </div>
             </div>
             
-            <div className="px-4 flex flex-col justify-center gap-4 font-black text-green-900 border-r-2 border-green-900 items-center">
-                <div className="flex gap-4">
-                    <IconMoodSmileFilled></IconMoodSmileFilled>
-                    <span>{profissional.qtd_atds} atendimentos realizados</span>
-                </div>
-                <div className="flex gap-4">
-                    <IconCalendar></IconCalendar>
-                    <span>12 meses na MakeUpMe</span>
-                </div>
+            <div className="px-4 flex flex-col justify-center text-green-900 border-r-2 border-green-900 items-center">
+                <span className="font-black text-xl">{profissional.qtd_atds}</span>
+                <span>Atendimentos realizados</span>
+                <IconMoodSmileFilled></IconMoodSmileFilled>
             </div>
             
             <div className="px-4 flex flex-col text-green-900 justify-center gap-4">

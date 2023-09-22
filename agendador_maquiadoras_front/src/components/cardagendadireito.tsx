@@ -79,7 +79,7 @@ export default function CardAgendaDireita(props:any){
             <div className="flex flex-col gap-4 text-green-900">
                 <div className="flex flex-col">
                     <span className="font-bold text-sm">Valor Final</span> 
-                    <span className="font-bold text-lg"> R$ {total} + Deslocamento </span>
+                    <span className="font-bold text-lg"> R$ {total}</span>
                 </div>
                 <div className="flex flex-col">
                     <span className="font-bold text-sm">Pagando com</span> 

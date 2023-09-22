@@ -3,14 +3,26 @@ import { IconBrandFacebook, IconBrandInstagram, IconBrandWhatsapp, IconCalendar,
 import Image from "next/image";
 import CardAgenda from "./cardagenda";
 import { useState } from "react";
+import { IconStarFilled } from "@tabler/icons-react";
 
 export default function CardAgendaEsquerdo(props:any){
     const { profissional, clicado, setClicado, escolhido, setEscolhido } = props
 
+    const blocoEstrelas = () => {
+        var arr = []
+        for (let i = 1; i < 6; i++) {
+            (i <= profissional.estrelas)?
+                arr.push(<IconStarFilled key={i}></IconStarFilled>)
+            :
+                arr.push(<IconStar  key={i}></IconStar>)
+        }
+        return arr
+    }
+
     return(
         <div className="bg-orange-100 rounded-md w-1/2 border-2 border-green-900 p-4 flex text-green-900">
 
-            <div className="w-1/4 border-r-2 border-green-900 flex flex-col items-center justify-center">
+            <div className="w-1/4 border-r-2 gap-2 border-green-900 flex flex-col items-center justify-center">
                 
                 {
                     profissional.foto != ""?
@@ -23,22 +35,14 @@ export default function CardAgendaEsquerdo(props:any){
 
                 <div className="flex gap-2">
                     {
-                        // blocoEstrelas()
+                        blocoEstrelas()
                     }
                 </div>
 
-                <strong>
-                    A partir de + Deslocamento
-                </strong>
-
-                <div className="flex gap-4 items-center justify-center p-2">
+                <div className="flex flex-col items-center justify-center p-2">
+                    <span className="font-black text-xl">{profissional.qtd_atds}</span>
+                    <span>Atendimentos realizados</span>
                     <IconMoodSmileFilled></IconMoodSmileFilled>
-                    <span>{profissional.qtd_atds} atendimentos realizados</span>
-                </div>
-
-                <div className="flex gap-4 items-center justify-center p-2">
-                    <IconCalendarFilled></IconCalendarFilled>
-                    <span>10 Meses na MakeUpMe</span>
                 </div>
 
             </div>
