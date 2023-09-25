@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "rest_framework",
     'corsheaders',
     "core",
+    'health_check',
     "drf_spectacular"
 ]
 
