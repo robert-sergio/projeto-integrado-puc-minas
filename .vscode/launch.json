@@ -26,6 +26,18 @@
             "env": { "PYTHONPATH": "${workspaceRoot}:venv:Scripts"},
             "django": true,
             "justMyCode": true
+        },
+        {
+            "name": "Python: Test Django",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\agendador_maquiadoras_back\\manage.py",
+            "args": [
+                "test"
+            ],
+            "env": { "PYTHONPATH": "${workspaceRoot}:venv:Scripts"},
+            "django": true,
+            "justMyCode": true
         }
     ]
 }
