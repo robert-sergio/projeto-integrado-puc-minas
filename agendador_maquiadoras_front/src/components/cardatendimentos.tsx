@@ -36,8 +36,6 @@ export default function CardAtendimentos(){
         {
             atds.length === 0?
                 <div className="text-green-900 font-bold flex gap-2 text-xl px-4">
-                    <IconMoodSad/>
-                    <span>Voce ainda nao possui atendimentos agendados</span>
                 </div>
             :
             atds.map((atd:any)=>{
