@@ -2,9 +2,13 @@
 
 import { useParams } from "next/navigation"
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { JSX, useEffect, useState } from "react"
 
 export default function CardAgenda(props:any){
+
+    class Teste {
+      }
+
     const pageProps = useParams()
     const { id } = pageProps
 
@@ -36,44 +40,41 @@ export default function CardAgenda(props:any){
         setEscolhido({'id': e.target.value})
     }
 
-    // const Colunas = () = {
-
-    // }
-
     const Botoes = () => {
-            var arr = []
-            var final = []
+            let arr: JSX.Element[] = []
+            let final: JSX.Element[] = []
 
             agendas.map((agenda:any)=>{
-            const properties = Object.keys(agenda)
-            const property = agenda[properties[0]]
-            
-            arr.push(<div key={property}>{properties}</div>)
+                const properties = Object.keys(agenda)
+                const property = agenda[properties[0]]
+                
+                arr.push(<div key={property}>{properties}</div>)
 
-            property.map((p:any)=>{
-                arr.push(
-                    p.livre ?
-                    <button 
-                        key={p.id}
-                        value={p.id}
-                        onClick={botaoSelecionado}
-                        className="p-1 border-2 border-green-900 rounded-md">{p.hora}</button>
-                    :
-                    <button 
-                        key={p.id}
-                        className="p-1 bg-slate-400 rounded-md">{p.hora}</button>
+                property.map((p:any)=>{
+                    arr.push(
+                        p.livre ?
+                        <button 
+                            key={p.id}
+                            value={p.id}
+                            onClick={botaoSelecionado}
+                            className="p-1 border-2 border-green-900 rounded-md">{p.hora}</button>
+                        :
+                        <button 
+                            key={p.id}
+                            className="p-1 bg-slate-400 rounded-md">{p.hora}</button>
+                    )
+                })
+
+                final.push(
+                    <div 
+                        key={property[0].id}
+                        className="flex flex-col gap-2">
+                        {arr}
+                    </div>
+                    
                 )
-            })
 
-            final.push(
-                <div 
-                    key={properties}
-                    className="flex flex-col gap-2">
-                    {arr}
-                </div>
-            )
-
-                arr = []
+                    arr = []
                 
             })
 

@@ -15,7 +15,7 @@ interface agendaProps {
 
 export default function CardAgendaDireita(props:any){
     const { escolhido, profissional } = props
-    const [ agenda, setAgenda ] = useState<agendaProps>({})
+    const [ agenda, setAgenda ] = useState<agendaProps>({} as any)
     const [ selecionados, setSelecionados ] = useState([])
     const [ total, setTotal ] = useState(0)
     const { usuario } = useContext(LoginContext)

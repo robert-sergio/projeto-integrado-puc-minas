@@ -10,7 +10,7 @@ interface servicosProps {
 
 export default function CardServicos(props:any){
     const { idprofissional, selecionados, setSelecionados, total, setTotal } = props
-    const [ servicos, setServicos ] = useState({})
+    const [ servicos, setServicos ] = useState([])
     
 
     function retrieveServicos(idprofissional:string){
@@ -26,9 +26,9 @@ export default function CardServicos(props:any){
     }, [])
 
     function handleLista(serv:any){
-        const outrosServicos = selecionados.filter(x => (x.id !== serv.id))
+        const outrosServicos = selecionados.filter((x: { id: any }) => (x.id !== serv.id))
         
-        let k = selecionados.some(a => a.id === serv.id)
+        let k = selecionados.some((a: {id: any}) => a.id === serv.id)
         if (k===true){
             setSelecionados([...outrosServicos])
         } else {
@@ -37,7 +37,7 @@ export default function CardServicos(props:any){
     }
 
     useEffect(()=>{
-        const precos = selecionados.map((v)=>{
+        const precos = selecionados.map((v:any)=>{
             return(
                 Number(v.preco)
             )
