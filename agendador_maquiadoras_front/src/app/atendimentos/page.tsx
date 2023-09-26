@@ -1,20 +1,8 @@
 'use client'
 import CardAtendimentos from "@/components/cardatendimentos";
 import SiteHeader from "@/components/header";
-import { useEffect, useContext } from "react";
-import { LoginContext } from "@/data/contexts/LoginContext";
-import { useRouter } from 'next/navigation';
 
 export default function Atendimentos() {
-    const router = useRouter()
-    const { logado } = useContext(LoginContext)
-
-    useEffect(()=>{
-        if (logado === false){
-            router.push('/login')
-        }
-    },[])
-
     return(
         <div>
             <SiteHeader></SiteHeader>
