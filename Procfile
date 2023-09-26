@@ -1,1 +1,1 @@
-web: cd agendador_maquiadoras_back && gunicorn agendador_maquiadoras.wsgi
+web: cd agendador_maquiadoras_back && python manage.py migrate && gunicorn agendador_maquiadoras.wsgi
