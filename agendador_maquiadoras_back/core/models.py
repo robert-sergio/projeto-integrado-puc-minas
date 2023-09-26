@@ -33,7 +33,7 @@ class Agenda(models.Model):
     livre = models.BooleanField(default=True)
 
     class Meta:
-        unique_together = (('data', 'hora'),)
+        unique_together = (('data', 'hora', 'profissional'),)
     
 
 class Atendimentos(models.Model):

@@ -9,10 +9,10 @@ import json
 
 
 # Create Acc Cliente
-class ClientesAPIView(generics.ListCreateAPIView):
+class ClientesAPIView(generics.CreateAPIView):
     queryset = Cliente.objects.all()
     serializer_class = ClienteSerializer
-    http_method_names = ['get', 'post']
+    http_method_names = ['post']
 
 
 # Patch Cliente
