@@ -68,7 +68,7 @@ MIDDLEWARE = [
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = (
        'http://localhost:3000',
-       'https://make-up-me.netlify.app/pesquisa'
+       'https://make-up-me.netlify.app'
 )
 CORS_ALLOW_HEADERS = ('content-disposition', 'accept-encoding',
                       'content-type', 'accept', 'origin', 'authorization',
