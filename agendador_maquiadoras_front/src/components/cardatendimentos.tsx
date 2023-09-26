@@ -12,7 +12,7 @@ export default function CardAtendimentos(){
     const [ updtd, setUpdtd ] = useState(false)
 
     async function GetAtendimentos(idCliente:number) {
-        const url = 'http://127.0.0.1:8000/core/atendimentos/?cliente='+idCliente+'&concluido=false'
+        const url = 'https://projeto-integrado-puc-minas-production.up.railway.app/core/atendimentos/?cliente='+idCliente+'&concluido=false'
         return await axios.get(url).then(res =>{
             return res.data
         }).catch( err =>{

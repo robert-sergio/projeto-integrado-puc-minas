@@ -14,7 +14,7 @@ export default function CardServicos(props:any){
     
 
     function retrieveServicos(idprofissional:string){
-        const url = 'http://127.0.0.1:8000/core/servicos/?profissional='+idprofissional
+        const url = 'https://projeto-integrado-puc-minas-production.up.railway.app/core/servicos/?profissional='+idprofissional
         const response = axios.get(url
             ).then((res)=>{
                 setServicos(res.data)

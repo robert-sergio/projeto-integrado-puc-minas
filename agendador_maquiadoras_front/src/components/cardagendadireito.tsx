@@ -22,7 +22,7 @@ export default function CardAgendaDireita(props:any){
     const router = useRouter()
 
     useEffect(()=>{
-        const url = 'http://127.0.0.1:8000/core/agenda/'+escolhido.id
+        const url = 'https://projeto-integrado-puc-minas-production.up.railway.app/core/agenda/'+escolhido.id
         const response = axios.get(url
         ).then((res)=>{
             setAgenda(res.data)
@@ -30,7 +30,7 @@ export default function CardAgendaDireita(props:any){
     },[escolhido])
 
     async function handleSubmit(){
-        const url = 'http://127.0.0.1:8000/core/novo_atendimento/'
+        const url = 'https://projeto-integrado-puc-minas-production.up.railway.app/core/novo_atendimento/'
         const ids = selecionados.map((s:any)=>{
             return (s.id)
         })

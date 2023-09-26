@@ -6,7 +6,7 @@ export default function Atendimento(props:any){
     const { dados, setUpdtd } = props
 
     async function CancelAtd(id:number) {
-        const url = 'http://127.0.0.1:8000/core/atendimento/'+id
+        const url = 'https://projeto-integrado-puc-minas-production.up.railway.app/core/atendimento/'+id
 
         const payload = {
             "concluido": true,
