@@ -14,7 +14,7 @@ export default function FiltroPesquisa(props:any){
     const [ localidades, setLocalidades] = useState([])
 
     async function GetFiltros(){
-        const url = 'http://127.0.0.1:8000/core/filtropesquisa/'
+        const url = 'https://projeto-integrado-puc-minas-production.up.railway.app/core/filtropesquisa/'
         const response = await axios.get(url
             ).then(res=> {
                 setProfissoes(res.data.profissoes)

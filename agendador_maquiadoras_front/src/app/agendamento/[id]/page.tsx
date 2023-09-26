@@ -27,7 +27,7 @@ export default function AgendamentoPage(props:any){
     const [ escolhido, setEscolhido ] = useState({'id':''})
 
     async function GetProfessionalId(id:any){
-        const url = 'http://localhost:8000/core/profissionais/?id='+id
+        const url = 'https://projeto-integrado-puc-minas-production.up.railway.app/core/profissionais/?id='+id
         const response = await axios.get(
             url
         ).then((res)=> {

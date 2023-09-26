@@ -15,7 +15,7 @@ export default function Pesquisa(){
 
     async function GetProfessional(){
         const response = await axios.get(
-            'http://localhost:8000/core/profissionais/'
+            'https://projeto-integrado-puc-minas-production.up.railway.app/core/profissionais/'
         ).then((res)=> {
             setProfissionais(res.data)
         }).catch((err)=>{
@@ -27,16 +27,16 @@ export default function Pesquisa(){
     async function GetProfessionalFiltrado(profissao:string, localidade:string){
         const url = (() =>{
             if ( profissao === 'todos' && localidade === 'todos'){
-                return 'http://localhost:8000/core/profissionais/'
+                return 'https://projeto-integrado-puc-minas-production.up.railway.app/core/profissionais/'
             }
             if ( profissao === 'todos' ){
-                return 'http://localhost:8000/core/profissionais/?endereco='+localidade
+                return 'https://projeto-integrado-puc-minas-production.up.railway.app/core/profissionais/?endereco='+localidade
             }
             if ( localidade === 'todos'){
-                return 'http://localhost:8000/core/profissionais/?profissao='+profissao
+                return 'https://projeto-integrado-puc-minas-production.up.railway.app/core/profissionais/?profissao='+profissao
             }
             else { 
-                return 'http://localhost:8000/core/profissionais/?profissao='+profissao+'&endereco='+localidade
+                return 'https://projeto-integrado-puc-minas-production.up.railway.app/core/profissionais/?profissao='+profissao+'&endereco='+localidade
             }
         })();
 

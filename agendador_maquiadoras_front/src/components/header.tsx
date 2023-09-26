@@ -5,7 +5,12 @@ import Link from "next/link"
 import { useContext, useEffect } from "react"
 
 export default function SiteHeader(props:any) {
-    const { logado, setLogado, usuario} = useContext(LoginContext)
+    const { logado, setLogado, usuario, setUsuario} = useContext(LoginContext)
+
+    function handleLogout(){
+        setLogado(false);
+        setUsuario({nome:'', id:0})
+    }
 
     return(
         <div className={`
@@ -37,7 +42,7 @@ export default function SiteHeader(props:any) {
 
                 {                   
                     logado?
-                    <Link href='/login' onClick={()=> setLogado(false)}>Sair</Link>
+                    <Link href='/login' onClick={()=> handleLogout()}>Sair</Link>
                     : <Link href='/login' >Fazer Login</Link>
                 }
 

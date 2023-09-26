@@ -35,7 +35,7 @@ export default function LoginPage(){
             }
         }
         const response = await axios.post(
-            'http://localhost:8000/core/logincliente',data, config
+            'https://projeto-integrado-puc-minas-production.up.railway.app/core/logincliente',data, config
         ).then((res)=> {
             setLogado(res.data['authorized'])
             setUsuario({

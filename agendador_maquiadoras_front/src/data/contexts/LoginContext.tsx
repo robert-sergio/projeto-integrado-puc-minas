@@ -21,23 +21,22 @@ export function LoginProvider(props:any){
     const [usuario, setUsuario] =useState({nome:'', id:0})
 
     useEffect(() => {
-        const data = window.localStorage.getItem('MY_APP_STATE');
+        const data = window.localStorage.getItem('LOGADO_BOOL');
         if ( data !== null ) setLogado(JSON.parse(data));
-    }, []);
+    }, [setLogado]);
 
     useEffect(() => {
-        const data = window.localStorage.getItem('MY_APP_STATE_2');
+        const data = window.localStorage.getItem('DADOS_LOGIN');
         if ( data !== null ) setUsuario(JSON.parse(data));
-    }, []);
+    }, [setLogado]);
 
     useEffect(() => {
-        window.localStorage.setItem('MY_APP_STATE', JSON.stringify(logado));
-      }, [logado]);
+        window.localStorage.setItem('LOGADO_BOOL', JSON.stringify(logado));
+      }, [logado, setLogado]);
 
     useEffect(() => {
-        window.localStorage.setItem('MY_APP_STATE_2', JSON.stringify(usuario));
-    }, [usuario]);      
-
+        window.localStorage.setItem('DADOS_LOGIN', JSON.stringify(usuario));
+    }, [usuario, setLogado]);
 
     return(
         <LoginContext.Provider value={{logado, setLogado, usuario, setUsuario}}>
