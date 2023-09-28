@@ -18,8 +18,8 @@ export const LoginContext = createContext<LoginContextProps>({} as any)
 
 export function LoginProvider(props:any){
     const [logado, setLogado] = useState<boolean>(false)
-    const [usuario, setUsuario] =useState({nome:'', id:0})
-
+    const [usuario, setUsuario] = useState({nome:'', id:0})
+    
     useEffect(() => {
         const data = window.localStorage.getItem('LOGADO_BOOL');
         if ( data !== null ) setLogado(JSON.parse(data));
@@ -28,7 +28,7 @@ export function LoginProvider(props:any){
     useEffect(() => {
         const data = window.localStorage.getItem('DADOS_LOGIN');
         if ( data !== null ) setUsuario(JSON.parse(data));
-    }, [setLogado]);
+    }, [setUsuario]);
 
     useEffect(() => {
         window.localStorage.setItem('LOGADO_BOOL', JSON.stringify(logado));
@@ -36,7 +36,7 @@ export function LoginProvider(props:any){
 
     useEffect(() => {
         window.localStorage.setItem('DADOS_LOGIN', JSON.stringify(usuario));
-    }, [usuario, setLogado]);
+    }, [usuario, setUsuario]);
 
     return(
         <LoginContext.Provider value={{logado, setLogado, usuario, setUsuario}}>
