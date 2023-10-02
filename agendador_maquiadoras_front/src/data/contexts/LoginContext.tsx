@@ -32,11 +32,11 @@ export function LoginProvider(props:any){
 
     useEffect(() => {
         window.localStorage.setItem('LOGADO_BOOL', JSON.stringify(logado));
-      }, [logado, setLogado]);
+      }, [logado]);
 
     useEffect(() => {
         window.localStorage.setItem('DADOS_LOGIN', JSON.stringify(usuario));
-    }, [usuario, setUsuario]);
+    }, [usuario]);
 
     return(
         <LoginContext.Provider value={{logado, setLogado, usuario, setUsuario}}>
