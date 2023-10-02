@@ -23,12 +23,12 @@ export function LoginProvider(props:any){
     useEffect(() => {
         const data = window.localStorage.getItem('LOGADO_BOOL');
         if ( data !== null ) setLogado(JSON.parse(data));
-    }, [setLogado]);
+    }, []);
 
     useEffect(() => {
         const data = window.localStorage.getItem('DADOS_LOGIN');
         if ( data !== null ) setUsuario(JSON.parse(data));
-    }, [setUsuario]);
+    }, []);
 
     useEffect(() => {
         window.localStorage.setItem('LOGADO_BOOL', JSON.stringify(logado));
