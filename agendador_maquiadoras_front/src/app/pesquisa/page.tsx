@@ -61,10 +61,10 @@ export default function Pesquisa(){
             <div className="p-4 flex justify-center item">
                 <div className="flex flex-col w-3/4 gap-4">
                     {
-                        logado?
-                        <></>
-                        :
+                        logado===false?
                         <CardLogin></CardLogin>
+                        :
+                        <></>
                     }
 
                     {
